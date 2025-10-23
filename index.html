@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <title>Мой сайт</title>
-  <link rel="stylesheet" href="styles.css" />
   <style>
     body {
       background-color: #000;
       color: #fff;
       margin: 0;
-      padding: 0;
+      padding-bottom: 80px; /* чтобы меню не перекрывало контент */
       font-family: Arial, sans-serif;
     }
     /* Стиль для меню */
@@ -21,15 +20,29 @@
       display: flex;
       justify-content: center;
       padding: 10px 0;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.5);
     }
-    .menu a {
+    .menu-item {
+      flex: 1;
+      text-align: center;
       color: #fff;
       text-decoration: none;
-      margin: 0 15px;
-      font-size: 16px;
+      padding: 10px 0;
+      transition: background-color 0.3s;
     }
-    .menu a:hover {
-      text-decoration: underline;
+    .menu-item:hover {
+      background-color: #444;
+    }
+    /* Эмодзи сверху */
+    .icon {
+      font-size: 24px;
+      display: block;
+      margin-bottom: 5px;
+    }
+    /* Текст под эмодзи */
+    .label {
+      display: block;
+      font-size: 14px;
     }
   </style>
 </head>
@@ -37,12 +50,25 @@
   <h1>Добро пожаловать на мой сайт!</h1>
   <p>Это мой первый сайт на GitHub Pages.</p>
 
-  <!-- Меню внизу -->
+  <!-- Меню с эмодзи над текстом -->
   <div class="menu">
-    <a href="#">Главная</a>
-    <a href="#">Вывод</a>
-    <a href="#">История</a>
-    <a href="#">Помощь</a>
+    <a href="#" class="menu-item">
+      <span class="icon">🏠</span>
+      <span class="label">Главная</span>
+    </a>
+    <a href="#" class="menu-item">
+      <span class="icon">💰</span>
+      <span class="label">Вывод</span>
+    </a>
+    <a href="#" class="menu-item">
+      <span class="icon">📜</span>
+      <span class="label">История</span>
+    </a>
+    <a href="#" class="menu-item">
+      <span class="icon">❓</span>
+      <span class="label">Помощь</span>
+    </a>
   </div>
 </body>
 </html>
+
