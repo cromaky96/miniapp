@@ -1,8 +1,9 @@
-
-
 document.addEventListener('DOMContentLoaded', () => {
   // Получаем элемент для отображения имени пользователя
   const usernameDisplay = document.getElementById('usernameDisplay');
+
+  // Получаем элемент для отображения количества онлайн-игроков
+  const playerCountDisplay = document.getElementById('playerCount');
 
   // Отправляем AJAX-запрос на сервер для получения имени пользователя
   fetch('/get-user-info')
@@ -14,13 +15,39 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .catch(error => console.error('Ошибка:', error));
 
+  // Функция для обновления количества онлайн-игроков
+  async function updateOnlinePlayers() {
+    try {
+      const response = await fetch('/get-online-players');
+      const data = await response.json();
+      if (response.ok && data.count !== undefined) {
+        playerCountDisplay.textContent = `Онлайн игроков: ${data.count}`;
+      } else {
+        throw new Error('Ошибка при получении данных.');
+      }
+    } catch (err) {
+      console.error(err.message);
+      playerCountDisplay.textContent = 'Ошибка!';
+    }
+  }
+
+  // Первая загрузка данных при старте страницы
+  updateOnlinePlayers();
+
+  // Автоматическое обновление данных каждые 10 секунд
+  setInterval(updateOnlinePlayers, 10000);
+
   // Основная логика загрузки страниц
   const contentDiv = document.getElementById('content');
   const mainTitle = document.getElementById('mainTitle');
   const mainParagraph = document.getElementById('mainParagraph');
 
   const pages = {
-    main: `<h1>soon</h1><p></p>`,
+    main: `
+      <h1></h1>
+      <p></p>
+      <div id="playerCount"></div> <!-- Сюда выведем количество онлайн-игроков -->
+    `,
     withdraw: `
       <div class="withdraw-section">
         <div class="withdraw-title">Вывод средств</div>
@@ -41,7 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `,
     history: `<h1>История операций</h1><div id="historyList"></div>`,
-    help: `<h1>Помощь</h1><p>Здесь FAQ и поддержка.</p>`
+    help: `<h1>Помощь</h1><p>Здесь FAQ и поддержка.</p>`,
+    advertising: `<h1>Рекламный блок</h1>` // Новый раздел для рекламной страницы
   };
 
   let selectedPayment = null;
@@ -60,9 +88,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (page === 'main') {
       mainTitle.style.display = 'block';
       mainParagraph.style.display = 'block';
+
+      // Покажем кнопку только на главной странице
+      document.querySelector('.ad-button').style.display = 'block';
     } else {
       mainTitle.style.display = 'none';
       mainParagraph.style.display = 'none';
+
+      // Скроем кнопку на всех других страницах
+      document.querySelector('.ad-button').style.display = 'none';
     }
 
     contentDiv.innerHTML = pages[page] || `<h1>Страница не найдена</h1>`;
@@ -109,6 +143,15 @@ document.addEventListener('DOMContentLoaded', () => {
     heart.addEventListener('animationend', () => { heart.remove(); });
   }
   setInterval(createHeart, 300);
+
+  // Обработчик нажатия на кнопку рекламы
+  const adButton = document.querySelector('.ad-button');
+  if (adButton) {
+    adButton.onclick = (e) => {
+      e.preventDefault();
+      loadPage(adButton.dataset.page); // Переход на рекламную страницу
+    };
+  }
 
   // Остальные функции и логика
 });
