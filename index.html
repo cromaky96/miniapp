@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Мой сайт</title>
+<link href="./css/styles.css" rel="stylesheet" />
+</head>
+<body>
+
+<div class="hearts-background" id="heartsBackground"></div>
+<div class="balance" id="balance">Ваш баланс: 0</div>
+<div id="content"></div>
+<div class="profile-container" id="profileContainer" style="display: none;">
+  <div class="profile-circle" id="profileCircle">
+    <img src="images/kat.jpg" alt="Моя фотография" />
+  </div>
+</div>
+<h1 id="mainTitle">soon</h1>
+<p id="mainParagraph"></p>
+<div class="menu">
+  <a href="#" class="menu-item" data-page="main">
+    <div class="icon">🏠</div>
+    <div class="label">Главная</div>
+  </a>
+  <a href="#" class="menu-item" data-page="withdraw">
+    <div class="icon">💰</div>
+    <div class="label">Вывод</div>
+  </a>
+  <a href="#" class="menu-item" data-page="history">
+    <div class="icon">📜</div>
+    <div class="label">История</div>
+  </a>
+  <a href="#" class="menu-item" data-page="help">
+    <div class="icon">❓</div>
+    <div class="label">Помощь</div>
+  </a>
+</div>
+
+<!-- Верхнее уведомление -->
+<div id="topNotification"></div>
+
+<script src="./js/utils.js"></script>
+<script src="./js/payment.js"></script>
+<script src="./js/app.js"></script>
+</body>
+</html>
