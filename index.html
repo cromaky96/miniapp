@@ -2,8 +2,10 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Мой сайт</title>
 <style>
+  /* Общие стили */
   body {
     background-color: #000;
     color: #fff;
@@ -11,7 +13,6 @@
     padding-bottom: 80px;
     font-family: Arial, sans-serif;
     height: 100vh;
-    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,7 +35,7 @@
   .heart-emoji {
     position: absolute;
     bottom: 0;
-    font-size: 20px;
+    font-size: 2vw; /* масштабируется по ширине */
     opacity: 0.8;
     animation: floatUp 5s linear forwards;
     transform: translateY(0);
@@ -54,20 +55,20 @@
   /* Текст баланса */
   .balance {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 2vh;
+    left: 2vw;
     background: rgba(34, 34, 34, 0.8);
-    padding: 10px 20px;
+    padding: 1vh 2vw;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 2vh; /* масштабируем */
     font-weight: bold;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    box-shadow: 0 0 1vh rgba(0,0,0,0.5);
     z-index: 1;
   }
 
-  /* Контейнер для основного содержимого страниц */
+  /* Контейнер для контента страниц */
   #content {
-    margin-top: 250px; /* чуть ниже */
+    margin-top: 25vh; /* чуть ниже, адаптивно */
     width: 80%;
     max-width: 600px;
     text-align: center;
@@ -82,15 +83,17 @@
 
   /* Круг с фотографией */
   .profile-circle {
-    width: 200px;
-    height: 200px;
+    width: 30vw; /* масштабируется */
+    height: 30vw;
+    max-width: 200px;
+    max-height: 200px;
     border-radius: 50%;
     overflow: hidden;
     border: 3px solid #fff;
-    box-shadow: 0 0 10px rgba(255,255,255,0.3);
+    box-shadow: 0 0 1vh rgba(255,255,255,0.3);
     transition: transform 0.2s ease;
     margin: 0 auto;
-    outline: none; /* убираем синий контур по умолчанию при фокусе */
+    outline: none;
   }
 
   /* Фото внутри круга */
@@ -101,67 +104,63 @@
     border-radius: 50%;
   }
 
-  /* Заголовок и параграф */
+  /* Заголовки и параграфы */
   h1, p {
-    margin-top: 20px;
+    margin-top: 2vh;
+    font-size: 2.5vh;
   }
 
-  /* Стиль для меню */
+  /* Меню */
   .menu {
     position: fixed;
     bottom: 0;
     width: 100%;
     background-color: #222;
     display: flex;
-    justify-content: center;
-    padding: 10px 0;
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.5);
+    justify-content: space-around;
+    padding: 1vh 0;
+    box-shadow: 0 -0.2vh 0.5vh rgba(0,0,0,0.5);
   }
   .menu-item {
     flex: 1;
     text-align: center;
     color: #fff;
     text-decoration: none;
-    padding: 10px 0;
+    padding: 1vh 0;
     transition: background-color 0.3s;
-    /* Убираем подсветку и выделение */
     outline: none;
     user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
   }
   .menu-item:hover,
   .menu-item:focus,
   .menu-item:active {
     background-color: #444;
-    outline: none;
   }
   .icon {
-    font-size: 24px;
+    font-size: 4vh;
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 0.5vh;
   }
   .label {
-    font-size: 14px;
+    font-size: 2vh;
   }
 
   /* Стиль для кнопки запуска музыки */
   #startMusicBtn {
     position: fixed;
-    top: 10px;
-    right: 10px;
+    top: 1vh;
+    right: 1vw;
     z-index: 10;
-    padding: 10px 20px;
+    padding: 1vh 2vw;
     background: #444;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 0.5vh;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 2vh;
   }
 
-  /* Дополнительно: отключение выделения и подсветки у ссылок и картинок */
+  /* Отключение выделения и подсветки для ссылок и изображений */
   a,
   img {
     outline: none;
@@ -169,8 +168,8 @@
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    -webkit-touch-callout: none; /* мобильное отключение */
-    -webkit-user-drag: none; /* отключение перетаскивания картинок */
+    -webkit-touch-callout: none;
+    -webkit-user-drag: none;
     user-drag: none;
     pointer-events: auto;
   }
@@ -188,7 +187,31 @@
     user-select: none;
   }
   a {
-    -webkit-tap-highlight-color: transparent; /* убирает подсветку при тапе на мобильных */
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Медиазапросы для мобильных устройств */
+  @media (max-width: 600px) {
+    body {
+      font-size: 2.2vh;
+    }
+    .balance {
+      font-size: 2vh;
+      padding: 1vh 2vw;
+      top: 1vh;
+      left: 1vw;
+    }
+    #content {
+      margin-top: 20vh;
+    }
+    .profile-circle {
+      width: 40vw;
+      height: 40vw;
+    }
+    h1 {
+      font-size: 3vh;
+    }
+    /* меню уже настроено для равномерного распределения */
   }
 </style>
 </head>
@@ -269,7 +292,6 @@
 
   // Функция загрузки страницы
   function loadPage(page) {
-    // Для главной страницы — показывать приветствие, для остальных — убрать
     if (page === 'main') {
       mainTitle.style.display = 'block';
       mainParagraph.style.display = 'block';
@@ -297,8 +319,6 @@
 
   // Загружаем главную страницу по умолчанию
   loadPage('main');
-
-  // Весь остальной скрипт без изменений
 </script>
 </body>
 </html>
