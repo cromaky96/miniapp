@@ -19,7 +19,7 @@
     justify-content: flex-start;
     overflow: hidden;
 
-    /* Отключение выделения и подсветки для всего документа */
+    /* Отключение выделения и подсветки */
     -webkit-user-select: none !important;
     -moz-user-select: none !important;
     -ms-user-select: none !important;
@@ -30,7 +30,6 @@
     -webkit-text-size-adjust: none !important;
   }
 
-  /* Остальные стили без изменений... */
   /* Контейнер для сердечек на заднем фоне */
   .hearts-background {
     position: fixed;
@@ -121,39 +120,59 @@
     font-size: 2.5vh;
   }
 
-  /* Меню */
+  /* Улучшенное нижнее меню */
   .menu {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #222;
+    background: linear-gradient(to top, #111, #222);
     display: flex;
     justify-content: space-around;
     padding: 1vh 0;
-    box-shadow: 0 -0.2vh 0.5vh rgba(0,0,0,0.5);
+    box-shadow: 0 -0.5vh 1vh rgba(0,0,0,0.7);
+    backdrop-filter: blur(5px);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    z-index: 100;
   }
+
   .menu-item {
     flex: 1;
     text-align: center;
     color: #fff;
     text-decoration: none;
     padding: 1vh 0;
-    transition: background-color 0.3s;
+    transition: background 0.3s, transform 0.2s;
     outline: none;
-    user-select: none;
+    font-weight: 600;
+    font-size: 2.2vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    margin: 0 4px;
+    cursor: pointer;
+    box-shadow: inset 0 0 5px rgba(255,255,255,0.1);
   }
+
   .menu-item:hover,
   .menu-item:focus,
   .menu-item:active {
-    background-color: #444;
+    background: linear-gradient(to top, #333, #555);
+    transform: translateY(-2px);
+    box-shadow: inset 0 0 10px rgba(255,255,255,0.2);
   }
+
   .icon {
     font-size: 4vh;
-    display: block;
     margin-bottom: 0.5vh;
+    transition: transform 0.2s;
   }
+
   .label {
     font-size: 2vh;
+    color: #fff;
   }
 
   /* Стиль для кнопки запуска музыки */
@@ -222,7 +241,6 @@
     h1 {
       font-size: 3vh;
     }
-    /* дополнительно отключаем выделение и подсветку на мобильных */
     a,
     img {
       outline: none !important;
@@ -263,17 +281,24 @@
 <h1 id="mainTitle">Выходи за меня Катя!!!</h1>
 <p id="mainParagraph"></p>
 
-<!-- Кнопка для запуска музыки (удалена) -->
-<!-- <button id="startMusicBtn">Включить музыку</button> -->
-
-<!-- Аудио для воспроизведения (убрано) -->
-<!-- <audio id="backgroundMusic" src="F.mp3" loop hidden></audio> -->
-
+<!-- Нижнее меню -->
 <div class="menu">
-  <a href="#" class="menu-item" data-page="main">🏠 Главная</a>
-  <a href="#" class="menu-item" data-page="withdraw">💰 Вывод</a>
-  <a href="#" class="menu-item" data-page="history">📜 История</a>
-  <a href="#" class="menu-item" data-page="help">❓ Помощь</a>
+  <a href="#" class="menu-item" data-page="main">
+    <div class="icon">🏠</div>
+    <div class="label">Главная</div>
+  </a>
+  <a href="#" class="menu-item" data-page="withdraw">
+    <div class="icon">💰</div>
+    <div class="label">Вывод</div>
+  </a>
+  <a href="#" class="menu-item" data-page="history">
+    <div class="icon">📜</div>
+    <div class="label">История</div>
+  </a>
+  <a href="#" class="menu-item" data-page="help">
+    <div class="icon">❓</div>
+    <div class="label">Помощь</div>
+  </a>
 </div>
 
 <script>
@@ -334,13 +359,14 @@
     }
   }
 
-  // Обработчики клика по меню
-  document.querySelectorAll('.menu-item').forEach(item => {
-    item.addEventListener('click', (e) => {
+  // Обработка кликов по меню с делегированием
+  document.querySelector('.menu').addEventListener('click', (e) => {
+    const menuItem = e.target.closest('.menu-item');
+    if (menuItem) {
       e.preventDefault();
-      const page = e.target.dataset.page;
+      const page = menuItem.dataset.page;
       loadPage(page);
-    });
+    }
   });
 
   // Загружаем главную страницу по умолчанию
