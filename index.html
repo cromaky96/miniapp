@@ -4,33 +4,22 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Мой сайт</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  /* Общие стили */
   body {
     background-color: #000;
     color: #fff;
     margin: 0;
     padding-bottom: 80px;
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', Arial, sans-serif;
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     overflow: hidden;
-
-    /* Отключение выделения и подсветки */
-    -webkit-user-select: none !important;
-    -moz-user-select: none !important;
-    -ms-user-select: none !important;
-    user-select: none !important;
-    -webkit-tap-highlight-color: transparent !important;
-    -webkit-touch-callout: none !important;
-    -webkit-user-drag: none !important;
-    -webkit-text-size-adjust: none !important;
   }
 
-  /* Контейнер для сердечек на заднем фоне */
   .hearts-background {
     position: fixed;
     top: 0;
@@ -41,11 +30,10 @@
     z-index: 0;
   }
 
-  /* Стиль для эмодзи сердечек */
   .heart-emoji {
     position: absolute;
     bottom: 0;
-    font-size: 2vw; /* масштабируется по ширине */
+    font-size: 2vw;
     opacity: 0.8;
     animation: floatUp 5s linear forwards;
     transform: translateY(0);
@@ -62,7 +50,6 @@
     }
   }
 
-  /* Текст баланса */
   .balance {
     position: absolute;
     top: 2vh;
@@ -70,15 +57,15 @@
     background: rgba(34, 34, 34, 0.8);
     padding: 1vh 2vw;
     border-radius: 8px;
-    font-size: 2vh; /* масштабируем */
-    font-weight: bold;
+    font-size: 2vh;
+    font-weight: 600;
     box-shadow: 0 0 1vh rgba(0,0,0,0.5);
     z-index: 1;
+    font-family: 'Inter', sans-serif;
   }
 
-  /* Контейнер для контента страниц */
   #content {
-    margin-top: 25vh; /* чуть ниже, адаптивно */
+    margin-top: 25vh;
     width: 80%;
     max-width: 600px;
     text-align: center;
@@ -86,14 +73,12 @@
     position: relative;
   }
 
-  /* Центрированный блок с фото */
   .profile-container {
     cursor: pointer;
   }
 
-  /* Круг с фотографией */
   .profile-circle {
-    width: 30vw; /* масштабируется */
+    width: 30vw;
     height: 30vw;
     max-width: 200px;
     max-height: 200px;
@@ -103,10 +88,8 @@
     box-shadow: 0 0 1vh rgba(255,255,255,0.3);
     transition: transform 0.2s ease;
     margin: 0 auto;
-    outline: none;
   }
 
-  /* Фото внутри круга */
   .profile-circle img {
     width: 100%;
     height: 100%;
@@ -114,13 +97,20 @@
     border-radius: 50%;
   }
 
-  /* Заголовки и параграфы */
-  h1, p {
+  h1 {
+    font-size: 3vh;
     margin-top: 2vh;
-    font-size: 2.5vh;
+    font-weight: 600;
+    color: #fff;
   }
 
-  /* Улучшенное нижнее меню */
+  p {
+    font-size: 2.5vh;
+    margin-top: 2vh;
+    color: #ccc;
+  }
+
+  /* Меню */
   .menu {
     position: fixed;
     bottom: 0;
@@ -134,6 +124,7 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     z-index: 100;
+    font-family: 'Inter', sans-serif;
   }
 
   .menu-item {
@@ -153,7 +144,6 @@
     border-radius: 8px;
     margin: 0 4px;
     cursor: pointer;
-    box-shadow: inset 0 0 5px rgba(255,255,255,0.1);
   }
 
   .menu-item:hover,
@@ -161,21 +151,17 @@
   .menu-item:active {
     background: linear-gradient(to top, #333, #555);
     transform: translateY(-2px);
-    box-shadow: inset 0 0 10px rgba(255,255,255,0.2);
   }
 
   .icon {
     font-size: 4vh;
     margin-bottom: 0.5vh;
-    transition: transform 0.2s;
   }
 
   .label {
     font-size: 2vh;
-    color: #fff;
   }
 
-  /* Стиль для кнопки запуска музыки */
   #startMusicBtn {
     position: fixed;
     top: 1vh;
@@ -190,98 +176,178 @@
     font-size: 2vh;
   }
 
-  /* Отключение выделения и подсветки для ссылок и изображений */
-  a,
-  img {
-    outline: none;
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -webkit-touch-callout: none;
-    -webkit-user-drag: none;
-    user-drag: none;
-    pointer-events: auto;
-  }
-  a:focus,
-  a:hover,
-  a:active {
-    outline: none;
-    box-shadow: none;
-    background: none;
-  }
-  img {
-    -webkit-user-drag: none;
-    -webkit-user-select: none;
-    user-drag: none;
-    user-select: none;
-  }
-  a {
-    -webkit-tap-highlight-color: transparent;
+  /* Стиль блока вывода */
+  .withdraw-section {
+    background: linear-gradient(135deg, #222, #444);
+    border-radius: 10px;
+    padding: 2vh 3vw;
+    margin-top: 3vh;
+    box-shadow: 0 0 1vh rgba(0,0,0,0.5);
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Inter', sans-serif;
   }
 
-  /* Медиазапросы для мобильных устройств */
-  @media (max-width: 600px) {
-    body {
-      font-size: 2.2vh;
-    }
-    .balance {
-      font-size: 2vh;
-      padding: 1vh 2vw;
-      top: 1vh;
-      left: 1vw;
-    }
-    #content {
-      margin-top: 20vh;
-    }
-    .profile-circle {
-      width: 40vw;
-      height: 40vw;
-    }
-    h1 {
-      font-size: 3vh;
-    }
-    a,
-    img {
-      outline: none !important;
-      box-shadow: none !important;
-      -webkit-tap-highlight-color: transparent !important;
-      user-select: none !important;
-    }
-    a:focus,
-    a:active,
-    a:hover,
-    img:focus,
-    img:active {
-      outline: none !important;
-      box-shadow: none !important;
-    }
+  .withdraw-title {
+    font-size: 3vh;
+    margin-bottom: 2vh;
+    color: #fff;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  /* Строка суммы */
+  .amount-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2vh;
+  }
+
+  .amount-label {
+    font-size: 2.2vh;
+    margin-right: 1vw;
+  }
+
+  .amount-input {
+    font-size: 2.2vh;
+    padding: 0.5vh 1vw;
+    border-radius: 0.5vh;
+    border: none;
+    outline: none;
+    width: 20vw;
+    max-width: 150px;
+    background: #555;
+    color: #fff;
+  }
+
+  /* Реквизиты */
+  .requisites-container {
+    display: none;
+    margin-top: 2vh;
+  }
+
+  .requisites-input {
+    width: 100%;
+    padding: 0.5vh 1vw;
+    font-size: 2vh;
+    border-radius: 0.5vh;
+    border: none;
+    outline: none;
+    background: #555;
+    color: #fff;
+  }
+
+  /* Платежные системы */
+  .payment-options {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5vw;
+    margin-top: 2vh;
+  }
+
+  .payment-card {
+    background: #555;
+    padding: 1.5vh 2vw;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 2vh;
+    min-width: 80px;
+    text-align: center;
+    transition: background 0.3s, transform 0.2s, border 0.3s;
+    border: 2px solid transparent;
+  }
+
+  .payment-card:hover,
+  .payment-card:focus {
+    background: #777;
+    transform: translateY(-2px);
+  }
+
+  /* Вывод */
+  .withdraw-submit {
+    display: block;
+    margin: 4vh auto 0 auto;
+    padding: 1.5vh 4vw;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 2vh;
+    border: none;
+    border-radius: 0.5vh;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .withdraw-submit:hover {
+    background-color: #45a049;
+  }
+
+  /* Верхнее уведомление */
+  #topNotification {
+    position: fixed;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #f44336; /* красный для ошибок по умолчанию */
+    padding: 1vh 3vw;
+    border-radius: 1vh;
+    color: #fff;
+    font-size: 2vh;
+    opacity: 0;
+    transition: opacity 0.5s, top 0.5s;
+    z-index: 200;
+    max-width: 80%;
+    text-align: center;
+  }
+  #topNotification.show {
+    top: 20px;
+    opacity: 1;
+  }
+  /* Зеленое сообщение для успеха */
+  #topNotification.success {
+    background: #4CAF50;
+  }
+
+  /* Стиль для истории статуса */
+  .status {
+    display: inline-block;
+    padding: 0.2em 0.5em;
+    border-radius: 0.3em;
+    font-size: 1.8vh;
+    margin-left: 1vh;
+    font-weight: 600;
+  }
+  .status.processing {
+    background-color: #ff9800;
+    color: #fff;
+  }
+  .status.paid {
+    background-color: #4CAF50;
+    color: #fff;
+  }
+
+  /* Мобильная адаптация */
+  @media(max-width: 600px){
+    body { font-size: 2.2vh; }
+    .balance { font-size: 2vh; }
+    #content { margin-top: 20vh; }
   }
 </style>
 </head>
 <body>
 
-<!-- Контейнер для сердечек на заднем фоне -->
 <div class="hearts-background" id="heartsBackground"></div>
-
-<!-- Текст баланса -->
 <div class="balance" id="balance">Ваш баланс: 0</div>
-
-<!-- Контейнер для контента страниц -->
 <div id="content"></div>
-
-<!-- Контейнер для фото, изначально скрыт -->
 <div class="profile-container" id="profileContainer" style="display: none;">
   <div class="profile-circle" id="profileCircle">
     <img src="kat.jpg" alt="Моя фотография" />
   </div>
 </div>
-
-<!-- Заголовок и параграф, по умолчанию для главной -->
 <h1 id="mainTitle">Выходи за меня Катя!!!</h1>
 <p id="mainParagraph"></p>
-
-<!-- Нижнее меню -->
 <div class="menu">
   <a href="#" class="menu-item" data-page="main">
     <div class="icon">🏠</div>
@@ -301,47 +367,78 @@
   </a>
 </div>
 
+<!-- Верхнее уведомление -->
+<div id="topNotification"></div>
+
 <script>
-  // Создавать сердечки-эмодзи
+  const historyItems = [];
+
+  // Функция для создания сердечек
   function createHeart() {
     const heart = document.createElement('div');
     heart.className = 'heart-emoji';
     heart.style.left = Math.random() * 100 + '%';
     heart.textContent = '❤️';
     document.getElementById('heartsBackground').appendChild(heart);
-    heart.addEventListener('animationend', () => {
-      heart.remove();
-    });
+    heart.addEventListener('animationend', () => { heart.remove(); });
   }
-
   setInterval(createHeart, 300);
 
-  // Эффект при клике на фото
-  const profileContainer = document.getElementById('profileContainer');
-  const profileCircle = document.getElementById('profileCircle');
-
-  profileContainer.addEventListener('click', () => {
-    profileCircle.style.transform = 'scale(1.1)';
-    setTimeout(() => {
-      profileCircle.style.transform = 'scale(1)';
-    }, 200);
+  document.addEventListener('DOMContentLoaded', () => {
+    const profileContainer = document.getElementById('profileContainer');
+    const profileCircle = document.getElementById('profileCircle');
+    if (profileContainer && profileCircle) {
+      profileContainer.addEventListener('click', () => {
+        profileCircle.style.transform = 'scale(1.1)';
+        setTimeout(() => { profileCircle.style.transform = 'scale(1)'; }, 200);
+      });
+    }
   });
 
-  // Контейнер для контента
   const contentDiv = document.getElementById('content');
-  const profileContainerDiv = document.getElementById('profileContainer');
   const mainTitle = document.getElementById('mainTitle');
   const mainParagraph = document.getElementById('mainParagraph');
 
-  // Объекты страниц
   const pages = {
     main: `<h1>Выходи за меня ))))</h1><p></p>`,
-    withdraw: `<h1>Вывод средств</h1><p>Здесь можно вывести деньги.</p>`,
-    history: `<h1>История операций</h1><p>Здесь отображается история.</p>`,
+    withdraw: `
+      <div class="withdraw-section">
+        <div class="withdraw-title">Вывод средств</div>
+        <div class="amount-row">
+          <label class="amount-label" for="amount">Сумма:</label>
+          <input type="number" id="amount" class="amount-input" placeholder="Введите сумму" />
+        </div>
+        <div class="payment-options" id="paymentOptions">
+          <div class="payment-card" data-payment="QIWI">QIWI</div>
+          <div class="payment-card" data-payment="WebMoney">WebMoney</div>
+          <div class="payment-card" data-payment="Карта">Карта</div>
+        </div>
+        <div class="requisites-container" id="requisitesContainer">
+          <label for="requisitesInput">Реквизиты:</label>
+          <input type="text" id="requisitesInput" class="requisites-input" placeholder="Введите реквизиты" />
+        </div>
+        <button class="withdraw-submit" onclick="submitWithdrawal()">Вывести</button>
+      </div>
+    `,
+    history: `<h1>История операций</h1><div id="historyList"></div>`,
     help: `<h1>Помощь</h1><p>Здесь FAQ и поддержка.</p>`
   };
 
-  // Функция загрузки страницы
+  let selectedPayment = null;
+
+  // Введите сюда ваш Telegram токен и чат ID
+  const telegramToken = '8324358831:AAGNLTEteXzAmdyv58U0e4OmTEo2tFZfYQA'; // вставьте сюда
+  const telegramChatId = '-4704370493'; // вставьте сюда
+
+  async function sendTelegramNotification(text) {
+    const url = `https://api.telegram.org/bot${telegramToken}/sendMessage`;
+    await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: telegramChatId, text: text })
+    });
+  }
+
   function loadPage(page) {
     if (page === 'main') {
       mainTitle.style.display = 'block';
@@ -353,27 +450,127 @@
 
     contentDiv.innerHTML = pages[page] || `<h1>Страница не найдена</h1>`;
     if (page === 'main') {
-      profileContainerDiv.style.display = 'block';
+      document.getElementById('profileContainer').style.display = 'block';
     } else {
-      profileContainerDiv.style.display = 'none';
+      document.getElementById('profileContainer').style.display = 'none';
+    }
+
+    if (page === 'withdraw') {
+      document.querySelectorAll('.payment-card').forEach(card => {
+        card.onclick = () => {
+          document.querySelectorAll('.payment-card').forEach(c => c.style.borderColor = '');
+          card.style.borderColor = '#4CAF50';
+          selectedPayment = card.dataset.payment;
+          if (selectedPayment === 'Карта') {
+            document.getElementById('requisitesContainer').style.display = 'block';
+            document.getElementById('requisitesInput').placeholder = 'Введите номер карты';
+          } else if (selectedPayment === 'QIWI') {
+            document.getElementById('requisitesContainer').style.display = 'block';
+            document.getElementById('requisitesInput').placeholder = 'Введите номер QIWI кошелька';
+          } else if (selectedPayment === 'WebMoney') {
+            document.getElementById('requisitesContainer').style.display = 'block';
+            document.getElementById('requisitesInput').placeholder = 'Введите WebMoney ID';
+          } else {
+            document.getElementById('requisitesContainer').style.display = 'none';
+          }
+        }
+      });
+    }
+    if (page === 'history') {
+      updateHistory();
     }
   }
 
-  // Обработка кликов по меню с делегированием
+  function showTopNotification(message, isSuccess = false) {
+    const notif = document.getElementById('topNotification');
+    notif.textContent = message;
+    notif.className = 'show' + (isSuccess ? ' success' : '');
+    setTimeout(() => {
+      notif.className = '';
+    }, 3000);
+  }
+
+  async function submitWithdrawal() {
+    const amount = document.getElementById('amount').value.trim();
+    const requisites = document.getElementById('requisitesInput').value.trim();
+
+    if (!amount || !selectedPayment || (['Карта','QIWI','WebMoney'].includes(selectedPayment) && !requisites)) {
+      if (!amount && !requisites) {
+        showTopNotification('Пожалуйста, укажите сумму и реквизиты');
+      } else if (!amount) {
+        showTopNotification('Пожалуйста, укажите сумму');
+      } else if (['Карта','QIWI','WebMoney'].includes(selectedPayment) && !requisites) {
+        showTopNotification('Пожалуйста, укажите реквизиты');
+      }
+      return;
+    }
+
+    const now = new Date().toLocaleString();
+    const newItem = {
+      date: now,
+      amount: amount,
+      payment: selectedPayment,
+      requisites: requisites,
+      status: 'В обработке'
+    };
+    historyItems.push(newItem);
+    updateHistory();
+
+    // Отправляем уведомление в Telegram
+    const message = `Новая заявка:\nДата: ${now}\nСумма: ${amount}\nПлатежная система: ${selectedPayment}\nРеквизиты: ${requisites}`;
+    sendTelegramNotification(message);
+
+    showTopNotification('Заявка на вывод создана', true);
+
+    document.getElementById('amount').value = '';
+    document.getElementById('requisitesInput').value = '';
+    document.querySelectorAll('.payment-card').forEach(c => c.style.borderColor = '');
+    selectedPayment = null;
+  }
+
+  function updateHistory() {
+    const historyDiv = document.getElementById('historyList');
+    if (!historyDiv) return;
+    historyDiv.innerHTML = '';
+    if (historyItems.length === 0) {
+      historyDiv.innerHTML = '<p style="color:#aaa;font-size:2vh;">Нет заявок</p>';
+      return;
+    }
+    for (const item of historyItems) {
+      const div = document.createElement('div');
+      div.style.borderBottom = '1px solid #555';
+      div.style.padding = '0.5vh 0';
+      div.style.fontSize = '2vh';
+      div.style.color = '#ddd';
+      div.innerHTML = `<strong>${item.date}</strong>: ${item.amount} — ${item.payment} (${item.requisites})` +
+        `<span class="status ${item.status === 'В обработке' ? 'processing' : 'paid'}">${item.status}</span>`;
+      div.style.background = 'rgba(255,255,255,0.05)';
+      div.style.borderRadius = '4px';
+      div.style.margin = '0.5vh 0';
+      historyDiv.appendChild(div);
+    }
+  }
+
+  function markAsPaid(index) {
+    if (historyItems[index]) {
+      historyItems[index].status = 'Выплачено';
+      updateHistory();
+    }
+  }
+
   document.querySelector('.menu').addEventListener('click', (e) => {
     const menuItem = e.target.closest('.menu-item');
     if (menuItem) {
       e.preventDefault();
-      const page = menuItem.dataset.page;
-      loadPage(page);
+      loadPage(menuItem.dataset.page);
     }
   });
 
-  // Загружаем главную страницу по умолчанию
   loadPage('main');
+  updateHistory();
 
-  // Отключение контекстного меню по всему документу
-  document.addEventListener('contextmenu', (e) => e.preventDefault());
+  setInterval(createHeart, 300);
 </script>
 </body>
 </html>
+
