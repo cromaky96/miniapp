@@ -18,8 +18,19 @@
     align-items: center;
     justify-content: flex-start;
     overflow: hidden;
+
+    /* Отключение выделения и подсветки для всего документа */
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-touch-callout: none !important;
+    -webkit-user-drag: none !important;
+    -webkit-text-size-adjust: none !important;
   }
 
+  /* Остальные стили без изменений... */
   /* Контейнер для сердечек на заднем фоне */
   .hearts-background {
     position: fixed;
@@ -334,7 +345,9 @@
 
   // Загружаем главную страницу по умолчанию
   loadPage('main');
+
+  // Отключение контекстного меню по всему документу
+  document.addEventListener('contextmenu', (e) => e.preventDefault());
 </script>
 </body>
 </html>
-
