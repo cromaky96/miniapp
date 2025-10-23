@@ -612,3 +612,32 @@ p {
   transform: translate(-50%, -50%);
   pointer-events: none;
 }
+
+/* Стиль для контейнера звезды внутри кнопки */
+.ad-button .star-emoji {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 100px; /* или другой размер, по необходимости */
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Стиль для белого круга внутри кнопки */
+.ad-button .profile-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
