@@ -480,3 +480,113 @@ p {
   color: #FFD700;
   margin-top: 20px;
 }
+
+.ad-button {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #ffc107;
+  color: white;
+  font-size: 24px;
+  line-height: 60px;
+  text-align: center;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.ad-button:hover {
+  transform: scale(1.1); /* Увеличение размера при наведении */
+  transition: all 0.3s ease-in-out;
+}
+/* Общие настройки кнопки */
+.ad-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 3px solid #ffc107;
+  color: #ffc107;
+  font-size: 16px;
+  line-height: normal;
+  text-align: center;
+  cursor: pointer;
+  pointer-events: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.ad-button:hover {
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Отдельные элементы кнопки */
+.ad-icon {
+  font-size: 36px;
+  margin-bottom: 5px;
+}
+
+.money-icon {
+  font-size: 24px;
+  margin-top: 5px;
+}
+
+.ad-text {
+  font-size: 12px;
+  word-break: keep-all;
+}
+
+.center-container {
+  position: fixed;
+  top: -500px; /* Постоянное расстояние от верха экрана */
+  left: 50%;
+  transform: translate(-50%, 0); /* Сохраним горизонтальное центрирование */
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.ad-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px; /* Увеличенный диаметр */
+  height: 300px; /* Увеличенный диаметр */
+  border-radius: 50%; /* Сохраняем круглую форму */
+  background-color: transparent;
+  border: 3px solid #ffc107;
+  color: #ffc107;
+  font-size: 18px; /* Немного увеличим размер шрифта */
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  pointer-events: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.ad-button:hover {
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.online-count {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  z-index: 1000;
+}
+
+#playerCount {
+  font-weight: bold;
+}
