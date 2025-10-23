@@ -90,6 +90,7 @@
     box-shadow: 0 0 10px rgba(255,255,255,0.3);
     transition: transform 0.2s ease;
     margin: 0 auto;
+    outline: none; /* убираем синий контур по умолчанию при фокусе */
   }
 
   /* Фото внутри круга */
@@ -123,9 +124,18 @@
     text-decoration: none;
     padding: 10px 0;
     transition: background-color 0.3s;
+    /* Убираем подсветку и выделение */
+    outline: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
   }
-  .menu-item:hover {
+  .menu-item:hover,
+  .menu-item:focus,
+  .menu-item:active {
     background-color: #444;
+    outline: none;
   }
   .icon {
     font-size: 24px;
@@ -150,6 +160,36 @@
     cursor: pointer;
     font-size: 14px;
   }
+
+  /* Дополнительно: отключение выделения и подсветки у ссылок и картинок */
+  a,
+  img {
+    outline: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-touch-callout: none; /* мобильное отключение */
+    -webkit-user-drag: none; /* отключение перетаскивания картинок */
+    user-drag: none;
+    pointer-events: auto;
+  }
+  a:focus,
+  a:hover,
+  a:active {
+    outline: none;
+    box-shadow: none;
+    background: none;
+  }
+  img {
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    user-drag: none;
+    user-select: none;
+  }
+  a {
+    -webkit-tap-highlight-color: transparent; /* убирает подсветку при тапе на мобильных */
+  }
 </style>
 </head>
 <body>
@@ -171,15 +211,14 @@
 </div>
 
 <!-- Заголовок и параграф, по умолчанию для главной -->
-<h1 id="mainTitle">Выходи за меня Катя!!!
-музыку вкл </h1>
+<h1 id="mainTitle">Выходи за меня Катя!!!</h1>
 <p id="mainParagraph"></p>
 
-<!-- Кнопка для запуска музыки -->
-<button id="startMusicBtn">Включить музыку</button>
+<!-- Кнопка для запуска музыки (удалена) -->
+<!-- <button id="startMusicBtn">Включить музыку</button> -->
 
-<!-- Аудио для воспроизведения -->
-<audio id="backgroundMusic" src="F.mp3" loop hidden></audio>
+<!-- Аудио для воспроизведения (убрано) -->
+<!-- <audio id="backgroundMusic" src="F.mp3" loop hidden></audio> -->
 
 <div class="menu">
   <a href="#" class="menu-item" data-page="main">🏠 Главная</a>
@@ -259,14 +298,7 @@
   // Загружаем главную страницу по умолчанию
   loadPage('main');
 
-  // Запуск музыки по кнопке
-  const music = document.getElementById('backgroundMusic');
-  const startBtn = document.getElementById('startMusicBtn');
-
-  document.getElementById('startMusicBtn').addEventListener('click', () => {
-    music.play();
-    startBtn.style.display = 'none';
-  });
+  // Весь остальной скрипт без изменений
 </script>
 </body>
 </html>
