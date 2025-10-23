@@ -1,9 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Получаем элемент для отображения имени пользователя
+  // Получаем элементы для отображения имени пользователя и количества онлайн-игроков
   const usernameDisplay = document.getElementById('usernameDisplay');
-
-  // Получаем элемент для отображения количества онлайн-игроков
   const playerCountDisplay = document.getElementById('playerCount');
+
+  // Получаем элементы профиля и звезды
+  const profileCircle = document.getElementById('profileCircle');
+  const starEmoji = document.querySelector('.star-emoji');
 
   // Отправляем AJAX-запрос на сервер для получения имени пользователя
   fetch('/get-user-info')
@@ -85,19 +87,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Функция загрузки страницы
   function loadPage(page) {
+    // Показываем или скрываем белый круг и звезду только на главной странице
     if (page === 'main') {
-      mainTitle.style.display = 'block';
-      mainParagraph.style.display = 'block';
+      profileCircle.style.display = 'block';
+      starEmoji.style.display = 'block';
 
-      // Покажем кнопку только на главной странице
-      document.querySelector('.ad-button').style.display = 'block';
+      // Показываем желтую кнопку только на главной странице
+      const adBtn = document.querySelector('.ad-button');
+      if (adBtn) {
+        adBtn.style.display = 'block';
+      }
     } else {
-      mainTitle.style.display = 'none';
-      mainParagraph.style.display = 'none';
+      profileCircle.style.display = 'none';
+      starEmoji.style.display = 'none';
 
-      // Скроем кнопку на всех других страницах
-      document.querySelector('.ad-button').style.display = 'none';
+      // Скроем желтую кнопку на всех остальных страницах
+      const adBtn = document.querySelector('.ad-button');
+      if (adBtn) {
+        adBtn.style.display = 'none';
+      }
     }
+
+    mainTitle.style.display = 'block';
+    mainParagraph.style.display = 'block';
 
     contentDiv.innerHTML = pages[page] || `<h1>Страница не найдена</h1>`;
 
@@ -155,3 +167,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Остальные функции и логика
 });
+
