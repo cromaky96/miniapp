@@ -73,6 +73,7 @@
     position: relative;
   }
 
+  /* Фото показывается только на главном экране */
   .profile-container {
     cursor: pointer;
   }
@@ -371,9 +372,9 @@
 <div id="topNotification"></div>
 
 <script>
+  // ваш существующий скрипт...
   const historyItems = [];
 
-  // Функция для создания сердечек
   function createHeart() {
     const heart = document.createElement('div');
     heart.className = 'heart-emoji';
@@ -516,7 +517,7 @@
     historyItems.push(newItem);
     updateHistory();
 
-    // Отправляем уведомление в Telegram
+    // Отправка уведомления в Telegram
     const message = `Новая заявка:\nДата: ${now}\nСумма: ${amount}\nПлатежная система: ${selectedPayment}\nРеквизиты: ${requisites}`;
     sendTelegramNotification(message);
 
@@ -566,11 +567,24 @@
     }
   });
 
+  // Изначально загружаем главную страницу
   loadPage('main');
   updateHistory();
 
+  // Создаем сердечки
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart-emoji';
+    heart.style.left = Math.random() * 100 + '%';
+    heart.textContent = '❤️';
+    document.getElementById('heartsBackground').appendChild(heart);
+    heart.addEventListener('animationend', () => { heart.remove(); });
+  }
   setInterval(createHeart, 300);
 </script>
+
+<!-- Подключение payment.js -->
+<script src="payment.js"></script>
+
 </body>
 </html>
-
