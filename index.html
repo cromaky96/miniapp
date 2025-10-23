@@ -6,7 +6,7 @@
 <title>Мой сайт</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  /* ваш CSS без изменений */
+  /* ваш CSS без изменений, оставляю как есть */
   body {
     background-color: #000;
     color: #fff;
@@ -348,7 +348,7 @@
     <img src="kat.jpg" alt="Моя фотография" />
   </div>
 </div>
-<h1 id="mainTitle">СЕМЕН ЛОШАРА</h1>
+<h1 id="mainTitle">Выходи за меня Катя!!!</h1>
 <p id="mainParagraph"></p>
 <div class="menu">
   <a href="#" class="menu-item" data-page="main">
@@ -375,15 +375,23 @@
 <script>
   // --- ВАШ СКРИПТ --- Начинаю вставку
   const historyItems = [];
+  
 
   // Загрузка истории из localStorage
   const savedHistory = localStorage.getItem('withdrawHistory');
   if (savedHistory) {
-    // вставляем сохраненные заявки
-    historyItems.splice(0, historyItems.length, ...JSON.parse(savedHistory));
+    // Вставляем сохранённые заявки
+    try {
+      const parsed = JSON.parse(savedHistory);
+      if (Array.isArray(parsed)) {
+        historyItems.splice(0, historyItems.length, ...parsed);
+      }
+    } catch(e) {
+      console.error('Ошибка парсинга истории:', e);
+    }
   }
 
-  // Остальной ваш код
+  // Оставшийся ваш скрипт
   function createHeart() {
     const heart = document.createElement('div');
     heart.className = 'heart-emoji';
@@ -410,7 +418,7 @@
   const mainParagraph = document.getElementById('mainParagraph');
 
   const pages = {
-    main: `<h1>ЛЫСЫЙ ГЛОБУС</h1><p></p>`,
+    main: `<h1>Выходи за меня ))))</h1><p></p>`,
     withdraw: `
       <div class="withdraw-section">
         <div class="withdraw-title">Вывод средств</div>
@@ -423,7 +431,7 @@
           <div class="payment-card" data-payment="WebMoney">WebMoney</div>
           <div class="payment-card" data-payment="Карта">Карта</div>
         </div>
-        <div class="requisites-container" id="requisitesContainer">
+        <div class="requisites-container" id="requisitesContainer" style="display:none;">
           <label for="requisitesInput">Реквизиты:</label>
           <input type="text" id="requisitesInput" class="requisites-input" placeholder="Введите реквизиты" />
         </div>
@@ -436,17 +444,21 @@
 
   let selectedPayment = null;
 
-  // Введите сюда ваш Telegram токен и чат ID
+  // Настройка Telegram API
   const telegramToken = '8324358831:AAGNLTEteXzAmdyv58U0e4OmTEo2tFZfYQA'; // вставьте сюда
   const telegramChatId = '-4704370493'; // вставьте сюда
 
   async function sendTelegramNotification(text) {
     const url = `https://api.telegram.org/bot${telegramToken}/sendMessage`;
-    await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: telegramChatId, text: text })
-    });
+    try {
+      await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: telegramChatId, text: text })
+      });
+    } catch(e) {
+      console.error('Ошибка отправки в Telegram:', e);
+    }
   }
 
   function loadPage(page) {
@@ -523,9 +535,9 @@
       requisites: requisites,
       status: 'В обработке'
     };
-    // Добавляем заявку в массив
+    // Добавляем в массив
     historyItems.push(newItem);
-    // Обновляем список истории
+    // Обновляем отображение
     updateHistory();
     // Сохраняем в localStorage
     localStorage.setItem('withdrawHistory', JSON.stringify(historyItems));
@@ -566,11 +578,11 @@
   }
 
   function markAsPaid(index) {
-    if (historyItems[index]) {
-      historyItems[index].status = 'Выплачено';
-      // Обновляем и сохраняем
+    if (window.historyItems[index]) {
+      window.historyItems[index].status = 'Выплачено';
+      // Обновляем отображение и сохраняем
       updateHistory();
-      localStorage.setItem('withdrawHistory', JSON.stringify(historyItems));
+      localStorage.setItem('withdrawHistory', JSON.stringify(window.historyItems));
     }
   }
 
@@ -585,12 +597,53 @@
   // Изначально загружаем главную страницу
   loadPage('main');
   updateHistory();
+
+  // --- ВАШ СКРИПТ --- Конец вставки
+  // Ниже — обработка callback-запросов и опрос
+  const callbackQueryIds = {}; // для хранения callback_id
+  let lastUpdateId = 0;
+
+  async function handleCallback(data) {
+    const parts = data.split('_');
+    if (parts.length !== 2) return;
+    const action = parts[0];
+    const index = parseInt(parts[1], 10);
+    if (isNaN(index) || index < 0 || index >= window.historyItems.length) return;
+
+    if (action === 'paid') {
+      window.historyItems[index].status = 'Выплачено';
+    } else if (action === 'canceled') {
+      window.historyItems[index].status = 'Отклонено';
+    }
+    updateHistory();
+
+    const callbackId = callbackQueryIds[data];
+    if (callbackId) {
+      await fetch(`https://api.telegram.org/bot${telegramToken}/answerCallbackQuery`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ callback_query_id: callbackId, text: 'Статус обновлен', show_alert: false })
+      });
+    }
+  }
+
+  async function pollTelegram() {
+    const url = `https://api.telegram.org/bot${telegramToken}/getUpdates?offset=${lastUpdateId + 1}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    if (data.ok && data.result.length > 0) {
+      data.result.forEach(update => {
+        lastUpdateId = update.update_id;
+        if (update.callback_query) {
+          callbackQueryIds[update.callback_query.data] = update.callback_query.id;
+          handleCallback(update.callback_query.data);
+        }
+      });
+    }
+  }
+
+  setInterval(pollTelegram, 3000);
 </script>
-
-<!-- подключение внешних скриптов -->
-<script src="payment.js"></script>
-<script src="gameData.js"></script>
-
 </body>
 </html>
 
