@@ -8,9 +8,97 @@
       background-color: #000;
       color: #fff;
       margin: 0;
-      padding-bottom: 80px; /* чтобы меню не перекрывало контент */
+      padding-bottom: 80px;
       font-family: Arial, sans-serif;
+      height: 100vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start; /* чуть вверх чтобы не было по центру */
+      overflow: hidden; /* чтобы сердечки не выходили за границы */
     }
+
+    /* Контейнер для сердечек на заднем фоне */
+    .hearts-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none; /* чтобы сердечки не мешали кликам */
+      z-index: 0; /* позади всех элементов */
+    }
+
+    /* Само сердечко */
+    .heart {
+      position: absolute;
+      bottom: 0; /* старт снизу */
+      border-radius: 50%;
+      background-color: red;
+      opacity: 0.8;
+      width: 10px;
+      height: 10px;
+      animation: floatUp 5s linear forwards;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-110vh) scale(0.5);
+        opacity: 0;
+      }
+    }
+
+    /* Текст баланса в левом верхнем углу */
+    .balance {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: rgba(34, 34, 34, 0.8);
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      z-index: 1;
+    }
+
+    /* Центрированный блок с фото (опущен ниже) */
+    .profile-container {
+      margin-top: 300px; /* опустим ниже */
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    /* Круг с фотографией */
+    .profile-circle {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #fff;
+      box-shadow: 0 0 10px rgba(255,255,255,0.3);
+      transition: transform 0.2s ease;
+    }
+
+    /* Фото внутри круга */
+    .profile-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    /* Заголовок и параграф */
+    h1, p {
+      margin-top: 20px;
+      text-align: center;
+    }
+
     /* Стиль для меню */
     .menu {
       position: fixed;
@@ -33,13 +121,12 @@
     .menu-item:hover {
       background-color: #444;
     }
-    /* Эмодзи сверху */
+    /* Эмодзи и текст в меню */
     .icon {
       font-size: 24px;
       display: block;
       margin-bottom: 5px;
     }
-    /* Текст под эмодзи */
     .label {
       display: block;
       font-size: 14px;
@@ -47,10 +134,23 @@
   </style>
 </head>
 <body>
+  <!-- Контейнер для сердечек на заднем фоне -->
+  <div class="hearts-background" id="heartsBackground"></div>
+
+  <!-- Текст баланса -->
+  <div class="balance" id="balance">Ваш баланс: 0</div>
+
+  <!-- Контейнер для фото -->
+  <div class="profile-container" id="profileContainer">
+    <div class="profile-circle" id="profileCircle">
+      <img src="kat.jpg" alt="Моя фотография" />
+    </div>
+  </div>
+
   <h1>Добро пожаловать на мой сайт!</h1>
   <p>Это мой первый сайт на GitHub Pages.</p>
 
-  <!-- Меню с эмодзи над текстом -->
+  <!-- Меню с эмодзи -->
   <div class="menu">
     <a href="#" class="menu-item">
       <span class="icon">🏠</span>
@@ -69,6 +169,42 @@
       <span class="label">Помощь</span>
     </a>
   </div>
+
+  <script>
+    // Создавать сердечки
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+
+      // случайная горизонтальная позиция
+      heart.style.left = Math.random() * 100 + '%';
+
+      // случайный размер
+      const size = Math.random() * 10 + 10; // 10-20px
+      heart.style.width = size + 'px';
+      heart.style.height = size + 'px';
+
+      document.getElementById('heartsBackground').appendChild(heart);
+
+      // Удалить сердце по окончании анимации
+      heart.addEventListener('animationend', () => {
+        heart.remove();
+      });
+    }
+
+    // Генерировать сердечки каждые 300мс
+    setInterval(createHeart, 300);
+
+    // Эффект при клике на фото
+    const profileContainer = document.getElementById('profileContainer');
+    const profileCircle = document.getElementById('profileCircle');
+
+    profileContainer.addEventListener('click', () => {
+      profileCircle.style.transform = 'scale(1.1)';
+      setTimeout(() => {
+        profileCircle.style.transform = 'scale(1)';
+      }, 200);
+    });
+  </script>
 </body>
 </html>
-
