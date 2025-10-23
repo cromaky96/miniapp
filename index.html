@@ -6,6 +6,7 @@
 <title>Мой сайт</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
+  /* ваш CSS без изменений */
   body {
     background-color: #000;
     color: #fff;
@@ -372,9 +373,17 @@
 <div id="topNotification"></div>
 
 <script>
-  // ваш существующий скрипт...
+  // --- ВАШ СКРИПТ --- Начинаю вставку
   const historyItems = [];
 
+  // Загрузка истории из localStorage
+  const savedHistory = localStorage.getItem('withdrawHistory');
+  if (savedHistory) {
+    // вставляем сохраненные заявки
+    historyItems.splice(0, historyItems.length, ...JSON.parse(savedHistory));
+  }
+
+  // Остальной ваш код
   function createHeart() {
     const heart = document.createElement('div');
     heart.className = 'heart-emoji';
@@ -514,8 +523,12 @@
       requisites: requisites,
       status: 'В обработке'
     };
+    // Добавляем заявку в массив
     historyItems.push(newItem);
+    // Обновляем список истории
     updateHistory();
+    // Сохраняем в localStorage
+    localStorage.setItem('withdrawHistory', JSON.stringify(historyItems));
 
     // Отправка уведомления в Telegram
     const message = `Новая заявка:\nДата: ${now}\nСумма: ${amount}\nПлатежная система: ${selectedPayment}\nРеквизиты: ${requisites}`;
@@ -555,7 +568,9 @@
   function markAsPaid(index) {
     if (historyItems[index]) {
       historyItems[index].status = 'Выплачено';
+      // Обновляем и сохраняем
       updateHistory();
+      localStorage.setItem('withdrawHistory', JSON.stringify(historyItems));
     }
   }
 
@@ -567,27 +582,13 @@
     }
   });
 
-  
-
   // Изначально загружаем главную страницу
   loadPage('main');
   updateHistory();
-
-  // Создаем сердечки
-  function createHeart() {
-    const heart = document.createElement('div');
-    heart.className = 'heart-emoji';
-    heart.style.left = Math.random() * 100 + '%';
-    heart.textContent = '❤️';
-    document.getElementById('heartsBackground').appendChild(heart);
-    heart.addEventListener('animationend', () => { heart.remove(); });
-  }
-  setInterval(createHeart, 300);
 </script>
 
-<!-- Подключение payment.js -->
+<!-- подключение внешних скриптов -->
 <script src="payment.js"></script>
-
 <script src="gameData.js"></script>
 
 </body>
