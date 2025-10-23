@@ -1,211 +1,272 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <title>Мой сайт</title>
-  <style>
-    body {
-      background-color: #000;
-      color: #fff;
-      margin: 0;
-      padding-bottom: 80px;
-      font-family: Arial, sans-serif;
-      height: 100vh;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start; /* чуть вверх чтобы не было по центру */
-      overflow: hidden; /* чтобы сердечки не выходили за границы */
-    }
+<meta charset="UTF-8" />
+<title>Мой сайт</title>
+<style>
+  body {
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    padding-bottom: 80px;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+  }
 
-    /* Контейнер для сердечек на заднем фоне */
-    .hearts-background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none; /* чтобы сердечки не мешали кликам */
-      z-index: 0; /* позади всех элементов */
-    }
+  /* Контейнер для сердечек на заднем фоне */
+  .hearts-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
 
-    /* Само сердечко */
-    .heart {
-      position: absolute;
-      bottom: 0; /* старт снизу */
-      border-radius: 50%;
-      background-color: red;
+  /* Стиль для эмодзи сердечек */
+  .heart-emoji {
+    position: absolute;
+    bottom: 0;
+    font-size: 20px;
+    opacity: 0.8;
+    animation: floatUp 5s linear forwards;
+    transform: translateY(0);
+  }
+
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0) scale(1);
       opacity: 0.8;
-      width: 10px;
-      height: 10px;
-      animation: floatUp 5s linear forwards;
     }
+    100% {
+      transform: translateY(-110vh) scale(0.5);
+      opacity: 0;
+    }
+  }
 
-    @keyframes floatUp {
-      0% {
-        transform: translateY(0) scale(1);
-        opacity: 0.8;
-      }
-      100% {
-        transform: translateY(-110vh) scale(0.5);
-        opacity: 0;
-      }
-    }
+  /* Текст баланса */
+  .balance {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(34, 34, 34, 0.8);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    z-index: 1;
+  }
 
-    /* Текст баланса в левом верхнем углу */
-    .balance {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      background: rgba(34, 34, 34, 0.8);
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: bold;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
-      z-index: 1;
-    }
+  /* Контейнер для основного содержимого страниц */
+  #content {
+    margin-top: 250px; /* чуть ниже */
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+    z-index: 2;
+    position: relative;
+  }
 
-    /* Центрированный блок с фото (опущен ниже) */
-    .profile-container {
-      margin-top: 250px; /* опустим ниже */
-      cursor: pointer;
-      z-index: 2;
-    }
+  /* Центрированный блок с фото */
+  .profile-container {
+    cursor: pointer;
+  }
 
-    /* Круг с фотографией */
-    .profile-circle {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 3px solid #fff;
-      box-shadow: 0 0 10px rgba(255,255,255,0.3);
-      transition: transform 0.2s ease;
-    }
+  /* Круг с фотографией */
+  .profile-circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #fff;
+    box-shadow: 0 0 10px rgba(255,255,255,0.3);
+    transition: transform 0.2s ease;
+    margin: 0 auto;
+  }
 
-    /* Фото внутри круга */
-    .profile-circle img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-    }
+  /* Фото внутри круга */
+  .profile-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
 
-    /* Заголовок и параграф */
-    h1, p {
-      margin-top: 20px;
-      text-align: center;
-    }
+  /* Заголовок и параграф */
+  h1, p {
+    margin-top: 20px;
+  }
 
-    /* Стиль для меню */
-    .menu {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background-color: #222;
-      display: flex;
-      justify-content: center;
-      padding: 10px 0;
-      box-shadow: 0 -2px 5px rgba(0,0,0,0.5);
-    }
-    .menu-item {
-      flex: 1;
-      text-align: center;
-      color: #fff;
-      text-decoration: none;
-      padding: 10px 0;
-      transition: background-color 0.3s;
-    }
-    .menu-item:hover {
-      background-color: #444;
-    }
-    /* Эмодзи и текст в меню */
-    .icon {
-      font-size: 24px;
-      display: block;
-      margin-bottom: 5px;
-    }
-    .label {
-      display: block;
-      font-size: 14px;
-    }
-  </style>
+  /* Стиль для меню */
+  .menu {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #222;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.5);
+  }
+  .menu-item {
+    flex: 1;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 0;
+    transition: background-color 0.3s;
+  }
+  .menu-item:hover {
+    background-color: #444;
+  }
+  .icon {
+    font-size: 24px;
+    display: block;
+    margin-bottom: 5px;
+  }
+  .label {
+    font-size: 14px;
+  }
+
+  /* Стиль для кнопки запуска музыки */
+  #startMusicBtn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    padding: 10px 20px;
+    background: #444;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+</style>
 </head>
 <body>
-  <!-- Контейнер для сердечек на заднем фоне -->
-  <div class="hearts-background" id="heartsBackground"></div>
 
-  <!-- Текст баланса -->
-  <div class="balance" id="balance">Ваш баланс: 0</div>
+<!-- Контейнер для сердечек на заднем фоне -->
+<div class="hearts-background" id="heartsBackground"></div>
 
-  <!-- Контейнер для фото -->
-  <div class="profile-container" id="profileContainer">
-    <div class="profile-circle" id="profileCircle">
-      <img src="kat.jpg" alt="Моя фотография" />
-    </div>
+<!-- Текст баланса -->
+<div class="balance" id="balance">Ваш баланс: 0</div>
+
+<!-- Контейнер для контента страниц -->
+<div id="content"></div>
+
+<!-- Контейнер для фото, изначально скрыт -->
+<div class="profile-container" id="profileContainer" style="display: none;">
+  <div class="profile-circle" id="profileCircle">
+    <img src="kat.jpg" alt="Моя фотография" />
   </div>
+</div>
 
-  <h1>Добро пожаловать на мой сайт!</h1>
-  <p>Это мой первый сайт на GitHub Pages.</p>
+<!-- Заголовок и параграф, по умолчанию для главной -->
+<h1 id="mainTitle">Выходи за меня Катя!!!
+музыку вкл </h1>
+<p id="mainParagraph"></p>
 
-  <!-- Меню с эмодзи -->
-  <div class="menu">
-    <a href="#" class="menu-item">
-      <span class="icon">🏠</span>
-      <span class="label">Главная</span>
-    </a>
-    <a href="#" class="menu-item">
-      <span class="icon">💰</span>
-      <span class="label">Вывод</span>
-    </a>
-    <a href="#" class="menu-item">
-      <span class="icon">📜</span>
-      <span class="label">История</span>
-    </a>
-    <a href="#" class="menu-item">
-      <span class="icon">❓</span>
-      <span class="label">Помощь</span>
-    </a>
-  </div>
+<!-- Кнопка для запуска музыки -->
+<button id="startMusicBtn">Включить музыку</button>
 
-  <script>
-    // Создавать сердечки
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
+<!-- Аудио для воспроизведения -->
+<audio id="backgroundMusic" src="F.mp3" loop hidden></audio>
 
-      // случайная горизонтальная позиция
-      heart.style.left = Math.random() * 100 + '%';
+<div class="menu">
+  <a href="#" class="menu-item" data-page="main">🏠 Главная</a>
+  <a href="#" class="menu-item" data-page="withdraw">💰 Вывод</a>
+  <a href="#" class="menu-item" data-page="history">📜 История</a>
+  <a href="#" class="menu-item" data-page="help">❓ Помощь</a>
+</div>
 
-      // случайный размер
-      const size = Math.random() * 10 + 10; // 10-20px
-      heart.style.width = size + 'px';
-      heart.style.height = size + 'px';
+<script>
+  // Создавать сердечки-эмодзи
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart-emoji';
+    heart.style.left = Math.random() * 100 + '%';
+    heart.textContent = '❤️';
+    document.getElementById('heartsBackground').appendChild(heart);
+    heart.addEventListener('animationend', () => {
+      heart.remove();
+    });
+  }
 
-      document.getElementById('heartsBackground').appendChild(heart);
+  setInterval(createHeart, 300);
 
-      // Удалить сердце по окончании анимации
-      heart.addEventListener('animationend', () => {
-        heart.remove();
-      });
+  // Эффект при клике на фото
+  const profileContainer = document.getElementById('profileContainer');
+  const profileCircle = document.getElementById('profileCircle');
+
+  profileContainer.addEventListener('click', () => {
+    profileCircle.style.transform = 'scale(1.1)';
+    setTimeout(() => {
+      profileCircle.style.transform = 'scale(1)';
+    }, 200);
+  });
+
+  // Контейнер для контента
+  const contentDiv = document.getElementById('content');
+  const profileContainerDiv = document.getElementById('profileContainer');
+  const mainTitle = document.getElementById('mainTitle');
+  const mainParagraph = document.getElementById('mainParagraph');
+
+  // Объекты страниц
+  const pages = {
+    main: `<h1>Выходи за меня ))))</h1><p></p>`,
+    withdraw: `<h1>Вывод средств</h1><p>Здесь можно вывести деньги.</p>`,
+    history: `<h1>История операций</h1><p>Здесь отображается история.</p>`,
+    help: `<h1>Помощь</h1><p>Здесь FAQ и поддержка.</p>`
+  };
+
+  // Функция загрузки страницы
+  function loadPage(page) {
+    // Для главной страницы — показывать приветствие, для остальных — убрать
+    if (page === 'main') {
+      mainTitle.style.display = 'block';
+      mainParagraph.style.display = 'block';
+    } else {
+      mainTitle.style.display = 'none';
+      mainParagraph.style.display = 'none';
     }
 
-    // Генерировать сердечки каждые 300мс
-    setInterval(createHeart, 300);
+    contentDiv.innerHTML = pages[page] || `<h1>Страница не найдена</h1>`;
+    if (page === 'main') {
+      profileContainerDiv.style.display = 'block';
+    } else {
+      profileContainerDiv.style.display = 'none';
+    }
+  }
 
-    // Эффект при клике на фото
-    const profileContainer = document.getElementById('profileContainer');
-    const profileCircle = document.getElementById('profileCircle');
-
-    profileContainer.addEventListener('click', () => {
-      profileCircle.style.transform = 'scale(1.1)';
-      setTimeout(() => {
-        profileCircle.style.transform = 'scale(1)';
-      }, 200);
+  // Обработчики клика по меню
+  document.querySelectorAll('.menu-item').forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      const page = e.target.dataset.page;
+      loadPage(page);
     });
-  </script>
+  });
+
+  // Загружаем главную страницу по умолчанию
+  loadPage('main');
+
+  // Запуск музыки по кнопке
+  const music = document.getElementById('backgroundMusic');
+  const startBtn = document.getElementById('startMusicBtn');
+
+  document.getElementById('startMusicBtn').addEventListener('click', () => {
+    music.play();
+    startBtn.style.display = 'none';
+  });
+</script>
 </body>
 </html>
-
