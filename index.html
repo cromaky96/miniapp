@@ -7,7 +7,9 @@
 <link href="styles.css" rel="stylesheet" />
 </head>
 <body>
-
+<div class="online-count">
+  Онлайн игроков: <span id="playerCount">Загрузка...</span>
+</div>
 <div class="hearts-background" id="heartsBackground"></div>
 <div class="balance" id="balance">Ваш баланс: 0</div>
 <div id="content"></div>
@@ -16,9 +18,12 @@
     <img src="images/kat.jpg" alt="Моя фотография" />
   </div>
 </div>
-<h1 id="mainTitle">soon</h1>
+<h1 id="mainTitle"></h1>
 <p id="mainParagraph"></p>
 <div class="menu">
+  <div class="center-container">
+    <a href="#" class="ad-button" data-page="advertising"></a> <!-- Удалила эмодзи -->
+  </div>
   <a href="#" class="menu-item" data-page="main">
     <div class="icon">🏠</div>
     <div class="label">Главная</div>
@@ -45,3 +50,4 @@
 <script src="app.js"></script>
 </body>
 </html>
+
