@@ -11,6 +11,9 @@ const telegramChatId = '-4704370493'; // вставьте сюда
 // ID чата администратора (куда отправлять заявки)
 const adminChatId = '-4704370493'; // или свой чат ID для админа
 
+// Для хранения ID callback-запросов
+const callbackQueryIds = {}; // ключ - data, значение - id callback-запроса
+
 // Для обработки входящих обновлений
 let lastUpdateId = 0;
 
@@ -41,7 +44,10 @@ async function pollTelegram() {
   if (data.ok && data.result.length > 0) {
     data.result.forEach(update => {
       lastUpdateId = update.update_id;
+
       if (update.callback_query) {
+        // сохраняем id callback-запроса для ответа
+        callbackQueryIds[update.callback_query.data] = update.callback_query.id;
         handleCallback(update.callback_query.data);
       }
     });
@@ -49,7 +55,7 @@ async function pollTelegram() {
 }
 
 // Обработка callback-запросов от админа для изменения статуса
-function handleCallback(data) {
+async function handleCallback(data) {
   const parts = data.split('_');
   if (parts.length !== 2) return;
   const action = parts[0];
@@ -63,7 +69,15 @@ function handleCallback(data) {
   }
   updateHistory();
 
-  // Можно отправлять уведомление пользователю о смене статуса, если нужно
+  // Отвечаем на callback-запрос, чтобы убрать уведомление в Telegram
+  const callbackId = callbackQueryIds[data];
+  if (callbackId) {
+    await fetch(`https://api.telegram.org/bot${telegramToken}/answerCallbackQuery`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ callback_query_id: callbackId, text: 'Статус обновлен', show_alert: false })
+    });
+  }
 }
 
 // Обработка отправки заявки пользователем
@@ -135,7 +149,7 @@ const pages = {
   help: `<h1>Помощь</h1><p>Здесь FAQ и поддержка.</p>`
 };
 
-// Инициализация страницы
+// Инициализация страницы по загрузке
 window.onload = () => {
   loadPage('main');
   updateHistory();
