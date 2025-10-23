@@ -211,7 +211,22 @@
     h1 {
       font-size: 3vh;
     }
-    /* меню уже настроено для равномерного распределения */
+    /* отключаем выделение и подсветку на мобильных */
+    a,
+    img {
+      outline: none !important;
+      box-shadow: none !important;
+      -webkit-tap-highlight-color: transparent !important;
+      user-select: none !important;
+    }
+    a:focus,
+    a:active,
+    a:hover,
+    img:focus,
+    img:active {
+      outline: none !important;
+      box-shadow: none !important;
+    }
   }
 </style>
 </head>
