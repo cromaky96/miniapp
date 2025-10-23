@@ -110,7 +110,7 @@
     font-size: 2.5vh;
   }
 
-  /* Меню */
+  /* Меню в виде кнопок с эмодзи сверху */
   .menu {
     position: fixed;
     bottom: 0;
@@ -127,6 +127,10 @@
     color: #fff;
     text-decoration: none;
     padding: 1vh 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     transition: background-color 0.3s;
     outline: none;
     user-select: none;
@@ -136,13 +140,12 @@
   .menu-item:active {
     background-color: #444;
   }
-  .icon {
-    font-size: 4vh;
-    display: block;
+  .menu-icon {
+    font-size: 4vh; /* масштаб эмодзи */
     margin-bottom: 0.5vh;
   }
-  .label {
-    font-size: 2vh;
+  .menu-label {
+    font-size: 2vh; /* текст под эмодзи */
   }
 
   /* Стиль для кнопки запуска музыки */
@@ -168,10 +171,9 @@
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    -webkit-touch-callout: none;
-    -webkit-user-drag: none;
-    user-drag: none;
-    pointer-events: auto;
+    -webkit-touch-callout: none; /* отключает контекстное меню на iOS */
+    -webkit-user-drag: none; /* отключает перетаскивание на WebKit */
+    user-drag: none; /* отключает перетаскивание */
   }
   a:focus,
   a:hover,
@@ -195,6 +197,25 @@
     body {
       font-size: 2.2vh;
     }
+    /* отключение выделения и зажатия на мобильных */
+    a,
+    img {
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -webkit-touch-callout: none; /* отключает контекстное меню */
+      -webkit-user-drag: none; /* отключает перетаскивание */
+      user-drag: none;
+    }
+    /* Удаление подсветки при нажатии */
+    a:focus,
+    a:hover,
+    a:active {
+      outline: none;
+      box-shadow: none;
+      background: none;
+    }
     .balance {
       font-size: 2vh;
       padding: 1vh 2vw;
@@ -211,7 +232,6 @@
     h1 {
       font-size: 3vh;
     }
-    /* меню уже настроено для равномерного распределения */
   }
 </style>
 </head>
@@ -237,17 +257,24 @@
 <h1 id="mainTitle">Выходи за меня Катя!!!</h1>
 <p id="mainParagraph"></p>
 
-<!-- Кнопка для запуска музыки (удалена) -->
-<!-- <button id="startMusicBtn">Включить музыку</button> -->
-
-<!-- Аудио для воспроизведения (убрано) -->
-<!-- <audio id="backgroundMusic" src="F.mp3" loop hidden></audio> -->
-
+<!-- Меню с эмодзи сверху текста -->
 <div class="menu">
-  <a href="#" class="menu-item" data-page="main">🏠 Главная</a>
-  <a href="#" class="menu-item" data-page="withdraw">💰 Вывод</a>
-  <a href="#" class="menu-item" data-page="history">📜 История</a>
-  <a href="#" class="menu-item" data-page="help">❓ Помощь</a>
+  <a href="#" class="menu-item" data-page="main">
+    <div class="menu-icon">🏠</div>
+    <div class="menu-label">Главная</div>
+  </a>
+  <a href="#" class="menu-item" data-page="withdraw">
+    <div class="menu-icon">💰</div>
+    <div class="menu-label">Вывод</div>
+  </a>
+  <a href="#" class="menu-item" data-page="history">
+    <div class="menu-icon">📜</div>
+    <div class="menu-label">История</div>
+  </a>
+  <a href="#" class="menu-item" data-page="help">
+    <div class="menu-icon">❓</div>
+    <div class="menu-label">Помощь</div>
+  </a>
 </div>
 
 <script>
@@ -276,13 +303,12 @@
     }, 200);
   });
 
-  // Контейнер для контента
+  // Контент
   const contentDiv = document.getElementById('content');
   const profileContainerDiv = document.getElementById('profileContainer');
   const mainTitle = document.getElementById('mainTitle');
   const mainParagraph = document.getElementById('mainParagraph');
 
-  // Объекты страниц
   const pages = {
     main: `<h1>Выходи за меня ))))</h1><p></p>`,
     withdraw: `<h1>Вывод средств</h1><p>Здесь можно вывести деньги.</p>`,
@@ -290,7 +316,6 @@
     help: `<h1>Помощь</h1><p>Здесь FAQ и поддержка.</p>`
   };
 
-  // Функция загрузки страницы
   function loadPage(page) {
     if (page === 'main') {
       mainTitle.style.display = 'block';
@@ -299,7 +324,6 @@
       mainTitle.style.display = 'none';
       mainParagraph.style.display = 'none';
     }
-
     contentDiv.innerHTML = pages[page] || `<h1>Страница не найдена</h1>`;
     if (page === 'main') {
       profileContainerDiv.style.display = 'block';
@@ -308,7 +332,6 @@
     }
   }
 
-  // Обработчики клика по меню
   document.querySelectorAll('.menu-item').forEach(item => {
     item.addEventListener('click', (e) => {
       e.preventDefault();
@@ -317,7 +340,7 @@
     });
   });
 
-  // Загружаем главную страницу по умолчанию
+  // Загружаем главную по умолчанию
   loadPage('main');
 </script>
 </body>
