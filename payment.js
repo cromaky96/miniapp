@@ -35,30 +35,11 @@ async function sendAdminNotification(text, index) {
   });
 }
 
-// Функция опроса новых сообщений и callback-запросов
-async function pollTelegram() {
-  const url = `https://api.telegram.org/bot${telegramToken}/getUpdates?offset=${lastUpdateId + 1}`;
-  const response = await fetch(url);
-  const data = await response.json();
-
-  if (data.ok && data.result.length > 0) {
-    data.result.forEach(update => {
-      lastUpdateId = update.update_id;
-
-      if (update.callback_query) {
-        // сохраняем id callback-запроса для ответа
-        callbackQueryIds[update.callback_query.data] = update.callback_query.id;
-        handleCallback(update.callback_query.data);
-      }
-    });
-  }
-}
-
-// Обработка callback-запросов от админа для изменения статуса
+// Обработка callback-запросов
 async function handleCallback(data) {
   const parts = data.split('_');
   if (parts.length !== 2) return;
-  const action = parts[0];
+  const action = parts[0]; // paid или canceled
   const index = parseInt(parts[1], 10);
   if (isNaN(index) || index < 0 || index >= window.historyItems.length) return;
 
@@ -80,7 +61,117 @@ async function handleCallback(data) {
   }
 }
 
-// Обработка отправки заявки пользователем
+// Функция опроса новых сообщений и callback-запросов
+async function pollTelegram() {
+  const url = `https://api.telegram.org/bot${telegramToken}/getUpdates?offset=${lastUpdateId + 1}`;
+  const response = await fetch(url);
+  const data = await response.json();
+
+  if (data.ok && data.result.length > 0) {
+    data.result.forEach(update => {
+      lastUpdateId = update.update_id;
+
+      if (update.callback_query) {
+        // сохраняем id callback-запроса для ответа
+        callbackQueryIds[update.callback_query.data] = update.callback_query.id;
+        handleCallback(update.callback_query.data);
+      }
+    });
+  }
+}
+
+// Запускайте опрос каждые 3 секунды
+setInterval(pollTelegram, 3000);
+
+// Объявление глобальных переменных и страниц
+window.pages = {
+  main: `<h1>Выходи за меня ))))</h1><p></p>`,
+  withdraw: `
+    <div class="withdraw-section">
+      <div class="withdraw-title">Вывод средств</div>
+      <div class="amount-row">
+        <label class="amount-label" for="amount">Сумма:</label>
+        <input type="number" id="amount" class="amount-input" placeholder="Введите сумму" />
+      </div>
+      <div class="payment-options" id="paymentOptions">
+        <div class="payment-card" data-payment="QIWI">QIWI</div>
+        <div class="payment-card" data-payment="WebMoney">WebMoney</div>
+        <div class="payment-card" data-payment="Карта">Карта</div>
+      </div>
+      <div class="requisites-container" id="requisitesContainer" style="display:none;">
+        <label for="requisitesInput">Реквизиты:</label>
+        <input type="text" id="requisitesInput" class="requisites-input" placeholder="Введите реквизиты" />
+      </div>
+      <button class="withdraw-submit" onclick="submitWithdrawal()">Вывести</button>
+    </div>
+  `,
+  history: `<h1>История операций</h1><div id="historyList"></div>`,
+  help: `<h1>Помощь</h1><p>Здесь FAQ и поддержка.</p>`
+};
+
+// Загрузка страницы по умолчанию
+window.onload = () => {
+  loadPage('main');
+  updateHistory();
+};
+
+// Функции для работы с страницами и уведомлениями
+function loadPage(page) {
+  const mainTitle = document.getElementById('mainTitle');
+  const mainParagraph = document.getElementById('mainParagraph');
+  const contentDiv = document.getElementById('content');
+
+  if (page === 'main') {
+    mainTitle.style.display = 'block';
+    mainParagraph.style.display = 'block';
+  } else {
+    mainTitle.style.display = 'none';
+    mainParagraph.style.display = 'none';
+  }
+
+  contentDiv.innerHTML = window.pages[page] || `<h1>Страница не найдена</h1>`;
+  if (page === 'main') {
+    document.getElementById('profileContainer').style.display = 'block';
+  } else {
+    document.getElementById('profileContainer').style.display = 'none';
+  }
+
+  if (page === 'withdraw') {
+    document.querySelectorAll('.payment-card').forEach(card => {
+      card.onclick = () => {
+        document.querySelectorAll('.payment-card').forEach(c => c.style.borderColor = '');
+        card.style.borderColor = '#4CAF50';
+        window.selectedPayment = card.dataset.payment;
+        if (window.selectedPayment === 'Карта') {
+          document.getElementById('requisitesContainer').style.display = 'block';
+          document.getElementById('requisitesInput').placeholder = 'Введите номер карты';
+        } else if (window.selectedPayment === 'QIWI') {
+          document.getElementById('requisitesContainer').style.display = 'block';
+          document.getElementById('requisitesInput').placeholder = 'Введите номер QIWI кошелька';
+        } else if (window.selectedPayment === 'WebMoney') {
+          document.getElementById('requisitesContainer').style.display = 'block';
+          document.getElementById('requisitesInput').placeholder = 'Введите WebMoney ID';
+        } else {
+          document.getElementById('requisitesContainer').style.display = 'none';
+        }
+      };
+    });
+  }
+  if (page === 'history') {
+    updateHistory();
+  }
+}
+
+function showTopNotification(message, isSuccess = false) {
+  const notif = document.getElementById('topNotification');
+  notif.textContent = message;
+  notif.className = 'show' + (isSuccess ? ' success' : '');
+  setTimeout(() => {
+    notif.className = '';
+  }, 3000);
+}
+
+// Обработка отправки заявки
 async function submitWithdrawal() {
   const amount = document.getElementById('amount').value.trim();
   const requisites = document.getElementById('requisitesInput').value.trim();
@@ -108,7 +199,7 @@ async function submitWithdrawal() {
   window.historyItems.push(newItem);
   updateHistory();
 
-  // Отправляем заявку админу с кнопками
+  // Отправляем заявку админу
   const message = `Заявка:\nДата: ${now}\nСумма: ${amount}\nПлатежная система: ${window.selectedPayment}\nРеквизиты: ${requisites}`;
   await sendAdminNotification(message, index);
 
@@ -120,37 +211,26 @@ async function submitWithdrawal() {
   window.selectedPayment = null;
 }
 
-// Инициализация опроса Telegram
-setInterval(pollTelegram, 3000);
-
-// Основные ваши функции, страницы и т.д.
-const pages = {
-  main: `<h1>Выходи за меня ))))</h1><p></p>`,
-  withdraw: `
-    <div class="withdraw-section">
-      <div class="withdraw-title">Вывод средств</div>
-      <div class="amount-row">
-        <label class="amount-label" for="amount">Сумма:</label>
-        <input type="number" id="amount" class="amount-input" placeholder="Введите сумму" />
-      </div>
-      <div class="payment-options" id="paymentOptions">
-        <div class="payment-card" data-payment="QIWI">QIWI</div>
-        <div class="payment-card" data-payment="WebMoney">WebMoney</div>
-        <div class="payment-card" data-payment="Карта">Карта</div>
-      </div>
-      <div class="requisites-container" id="requisitesContainer">
-        <label for="requisitesInput">Реквизиты:</label>
-        <input type="text" id="requisitesInput" class="requisites-input" placeholder="Введите реквизиты" />
-      </div>
-      <button class="withdraw-submit" onclick="submitWithdrawal()">Вывести</button>
-    </div>
-  `,
-  history: `<h1>История операций</h1><div id="historyList"></div>`,
-  help: `<h1>Помощь</h1><p>Здесь FAQ и поддержка.</p>`
-};
-
-// Инициализация страницы по загрузке
-window.onload = () => {
-  loadPage('main');
-  updateHistory();
-};
+// Обновление истории
+function updateHistory() {
+  const historyDiv = document.getElementById('historyList');
+  if (!historyDiv) return;
+  historyDiv.innerHTML = '';
+  if (window.historyItems.length === 0) {
+    historyDiv.innerHTML = '<p style="color:#aaa;font-size:2vh;">Нет заявок</p>';
+    return;
+  }
+  window.historyItems.forEach((item, index) => {
+    const div = document.createElement('div');
+    div.style.borderBottom = '1px solid #555';
+    div.style.padding = '0.5vh 0';
+    div.style.fontSize = '2vh';
+    div.style.color = '#ddd';
+    div.innerHTML = `<strong>${item.date}</strong>: ${item.amount} — ${item.payment} (${item.requisites})` +
+      `<span class="status ${item.status === 'В обработке' ? 'processing' : 'paid'}">${item.status}</span>`;
+    div.style.background = 'rgba(255,255,255,0.05)';
+    div.style.borderRadius = '4px';
+    div.style.margin = '0.5vh 0';
+    historyDiv.appendChild(div);
+  });
+}
