@@ -1,11 +1,12 @@
-/* Общие стили */
+/* Общие стили остаются без изменений */
+
 body {
   background-color: #000000f5;
   color: #fff;
   margin: 0;
-  padding-bottom: 80px;
+  padding-bottom: 80px; /* чтобы не загораживать меню */
   font-family: 'Inter', Arial, sans-serif;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 /* Блок баланса */
@@ -39,7 +40,7 @@ body {
   color: #fff;
 }
 
-/* Меню */
+/* Меню фиксировано снизу, адаптивное */
 .menu {
   position: fixed;
   bottom: 0;
@@ -54,28 +55,10 @@ body {
   border-top-right-radius: 10px;
   z-index: 100;
   font-family: 'Inter', sans-serif;
+  flex-wrap: nowrap;
 }
 
-.menu-item {
-  flex: 1;
-  text-align: center;
-  color: #fff;
-  text-decoration: none;
-  padding: 1vh 0;
-  transition: background 0.3s, transform 0.2s;
-  outline: none;
-  font-weight: 600;
-  font-size: 2.2vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  margin: 0 4px;
-  cursor: pointer;
-}
-
-
+/* Элементы меню */
 .menu-item {
   flex: 1;
   text-align: center;
@@ -99,33 +82,26 @@ body {
   transform: translateY(-2px);
 }
 
+/* Иконки */
 .icon {
   font-size: 4vh;
   margin-bottom: 0.5vh;
 }
-
+/* Метки */
 .label {
   font-size: 2vh;
 }
 
-/* Заголовки */
-h2 {
-  text-align: center;
-  margin-top: 30px;
-  font-size: 24px;
-  color: #ff009d;
-}
-
-/* Карточки контейнер */
+/* Карточки */
 .cards-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
   justify-content: center;
-  margin: 20px 0;
+  gap: 20px;
+  margin: 20px;
 }
 
-/* Карточки с эффектами и градиентами */
+/* Карточки с адаптивной шириной */
 .card {
   background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
   border-radius: 15px;
@@ -141,22 +117,18 @@ h2 {
   transform: translateY(-8px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 }
-
-/* Заголовки внутри карточек */
 .card h3 {
   margin-bottom: 12px;
   font-size: 20px;
   color: #fff;
 }
-
-/* Описание внутри карточек */
 .card p {
   font-size: 14px;
   color: #fff;
   line-height: 1.4;
 }
 
-/* Кнопки выбора с более современным стилем */
+/* Кнопки выбора */
 .select-button {
   margin-top: 20px;
   padding: 12px 25px;
@@ -174,12 +146,51 @@ h2 {
   background-color: #ff3b2e;
   transform: scale(1.05);
 }
-
-/* Выделенная карточка */
 .card.active {
   border: 3px solid #ffd700;
   box-shadow: 0 0 20px #ffd700;
 }
+
+/* Медиазапросы для мобильных устройств */
+@media (max-width: 768px) {
+  /* Меню становится вертикальным и более компактным */
+  .menu {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0.5vh 0;
+  }
+  .menu-item {
+    padding: 0.5vh 0;
+    font-size: 1.8vh;
+    margin: 2px;
+  }
+  /* Карточки уменьшаются и размещаются более компактно */
+  .cards-container {
+    gap: 15px;
+    margin: 10px;
+  }
+  .card {
+    width: 45%;
+    min-width: 150px;
+  }
+  /* Иконки */
+  .icon {
+    font-size: 3vh;
+  }
+  /* Заголовки внутри карточек */
+  h2 {
+    font-size: 20px;
+  }
+  /* Заголовки карточек */
+  .card h3 {
+    font-size: 18px;
+  }
+  /* Текст внутри карточек */
+  .card p {
+    font-size: 12px;
+  }
+}
+
 
 
 
