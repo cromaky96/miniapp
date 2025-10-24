@@ -1,193 +1,180 @@
-/* Общие стили */
-body {
-  background-color: #000000;
-  color: #fff;
-  margin: 0;
-  padding-bottom: 80px;
-  font-family: 'Inter', Arial, sans-serif;
-  height: 100vh;
-}
+  body {
+    background-color: #000000;
+    color: #fff;
+    margin: 0;
+    padding-bottom: 80px;
+    font-family: 'Inter', Arial, sans-serif;
+    height: 100vh;
+  }
 
-/* HEARTS BACKGROUND */
-.hearts-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-}
+  /* HEARTS BACKGROUND */
+  .hearts-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
 
+  /* Блок баланса */
+  .balance {
+    position: absolute;
+    top: 2vh;
+    left: 2vw;
+    background: rgba(34, 34, 34, 0.8);
+    padding: 1vh 2vw;
+    border-radius: 8px;
+    font-size: 2vh;
+    font-weight: 600;
+    box-shadow: 0 0 1vh rgba(0,0,0,0.5);
+    z-index: 1;
+    font-family: 'Inter', sans-serif;
+  }
 
-/* Блок баланса */
-.balance {
-  position: absolute;
-  top: 2vh;
-  left: 2vw;
-  background: rgba(34, 34, 34, 0.8);
-  padding: 1vh 2vw;
-  border-radius: 8px;
-  font-size: 2vh;
-  font-weight: 600;
-  box-shadow: 0 0 1vh rgba(0,0,0,0.5);
-  z-index: 1;
-  font-family: 'Inter', sans-serif;
-}
+  /* Имя пользователя */
+  .username-display {
+    position: absolute;
+    top: 6vh;
+    left: 2vw;
+    background: rgba(34, 34, 34, 0.8);
+    padding: 1vh 2vw;
+    border-radius: 8px;
+    font-size: 2vh;
+    font-weight: 600;
+    box-shadow: 0 0 1vh rgba(0,0,0,0.5);
+    z-index: 1;
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+  }
 
-/* Имя пользователя */
-.username-display {
-  position: absolute;
-  top: 6vh;
-  left: 2vw;
-  background: rgba(34, 34, 34, 0.8);
-  padding: 1vh 2vw;
-  border-radius: 8px;
-  font-size: 2vh;
-  font-weight: 600;
-  box-shadow: 0 0 1vh rgba(0,0,0,0.5);
-  z-index: 1;
-  font-family: 'Inter', sans-serif;
-  color: #fff;
-}
+  /* Основной контент для центрирования элементов */
+  #content {
+    margin-top: 25vh;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+    z-index: 2;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-/* Основной контент */
-#content {
-  margin-top: 25vh;
-  width: 80%;
-  max-width: 600px;
-  text-align: center;
-  z-index: 2;
-  position: relative;
-}
+  /* Заголовки и параграфы */
+  h1 {
+    font-size: 3vh;
+    margin-top: 2vh;
+    font-weight: 600;
+    color: #fff;
+  }
 
-/* Заголовки и параграфы */
-h1 {
-  font-size: 3vh;
-  margin-top: 2vh;
-  font-weight: 600;
-  color: #fff;
-}
+  p {
+    font-size: 2.5vh;
+    margin-top: 2vh;
+    color: #ccc;
+  }
 
-p {
-  font-size: 2.5vh;
-  margin-top: 2vh;
-  color: #ccc;
-}
+  /* Меню */
+  .menu {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(to top, #111, #222);
+    display: flex;
+    justify-content: space-around;
+    padding: 1vh 0;
+    box-shadow: 0 -0.5vh 1vh rgba(0,0,0,0.7);
+    backdrop-filter: blur(5px);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    z-index: 100;
+    font-family: 'Inter', sans-serif;
+  }
 
-/* Меню */
-.menu {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background: linear-gradient(to top, #111, #222);
-  display: flex;
-  justify-content: space-around;
-  padding: 1vh 0;
-  box-shadow: 0 -0.5vh 1vh rgba(0,0,0,0.7);
-  backdrop-filter: blur(5px);
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  z-index: 100;
-  font-family: 'Inter', sans-serif;
-}
+  .menu-item {
+    flex: 1;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    padding: 1vh 0;
+    transition: background 0.3s, transform 0.2s;
+    outline: none;
+    font-weight: 600;
+    font-size: 2.2vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    margin: 0 4px;
+  }
 
-.menu-item {
-  flex: 1;
-  text-align: center;
-  color: #fff;
-  text-decoration: none;
-  padding: 1vh 0;
-  transition: background 0.3s, transform 0.2s;
-  outline: none;
-  font-weight: 600;
-  font-size: 2.2vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  margin: 0 4px;
-  cursor: pointer;
-}
+  .menu-item:hover {
+    background: linear-gradient(to top, #333, #555);
+    transform: translateY(-2px);
+  }
 
-.menu-item:hover {
-  background: linear-gradient(to top, #333, #555);
-  transform: translateY(-2px);
-}
+  .icon {
+    font-size: 4vh;
+    margin-bottom: 0.5vh;
+  }
 
-.icon {
-  font-size: 4vh;
-  margin-bottom: 0.5vh;
-}
+  .label {
+    font-size: 2vh;
+  }
 
-.label {
-  font-size: 2vh;
-}
+  /* Центрированная кнопка с изображением */
+  .centered-image-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 35vh; /* или по вашему усмотрению */
+    z-index: 101;
+  }
 
+  .photo-button {
+    width: 250px;
+    height: 250px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-/* Отображение имени */
-.username-display {
-  position: absolute;
-  top: 6vh;
-  left: 2vw;
-  background: rgba(34, 34, 34, 0.8);
-  padding: 1vh 2vw;
-  border-radius: 8px;
-  font-size: 2vh;
-  font-weight: 600;
-  box-shadow: 0 0 1vh rgba(0,0,0,0.5);
-  z-index: 1;
-  font-family: 'Inter', sans-serif;
-  color: #fff;
-}
+  .photo-button img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgb(0, 225, 255);
+  }
 
+  /* Обертка для кнопки "Вывести деньги" */
+  .withdraw-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* расстояние от фото */
+  }
 
-/* Центрированная кнопка с изображением в виде круга */
-.centered-image-button {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 101;
-}
+  /* Стиль кнопки "Вывести деньги" */
+  .withdraw-button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #2909df96; /* цвет кнопки */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
 
-.photo-button {
-  width: 250px;
-  height: 250px;
-  background: transparent;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  .withdraw-button:hover {
+    background-color: #00ffea;
+  }
 
-.photo-button img {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 50%;
-  box-shadow: 0 0 10px rgb(0, 225, 255);
-}
-
-/* Стиль кнопки "Вывести деньги" */
-.withdraw-button {
-  margin-top: 555px;
-  padding: 10px 20px;
-  font-size: 18px;
-  background-color: #2909df96; /* цвет кнопки */
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.withdraw-button:hover {
-  background-color: #00ffea;
-}
 
 
 
