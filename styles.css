@@ -1,19 +1,14 @@
-/* Общий стиль */
+/* Общие стили */
 body {
-  background-color: #000;
+  background-color: #000000;
   color: #fff;
   margin: 0;
   padding-bottom: 80px;
   font-family: 'Inter', Arial, sans-serif;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  overflow: hidden;
 }
 
-/* Сердца фона */
+/* HEARTS BACKGROUND */
 .hearts-background {
   position: fixed;
   top: 0;
@@ -24,7 +19,7 @@ body {
   z-index: 0;
 }
 
-/* Анимация сердца */
+/* Анимация сердечек */
 .heart-emoji {
   position: absolute;
   bottom: 0;
@@ -45,7 +40,7 @@ body {
   }
 }
 
-/* Баланс */
+/* Блок баланса */
 .balance {
   position: absolute;
   top: 2vh;
@@ -60,7 +55,23 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-/* Контент */
+/* Имя пользователя */
+.username-display {
+  position: absolute;
+  top: 6vh;
+  left: 2vw;
+  background: rgba(34, 34, 34, 0.8);
+  padding: 1vh 2vw;
+  border-radius: 8px;
+  font-size: 2vh;
+  font-weight: 600;
+  box-shadow: 0 0 1vh rgba(0,0,0,0.5);
+  z-index: 1;
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+}
+
+/* Основной контент */
 #content {
   margin-top: 25vh;
   width: 80%;
@@ -70,32 +81,7 @@ body {
   position: relative;
 }
 
-/* Профиль */
-.profile-container {
-  cursor: pointer;
-}
-
-.profile-circle {
-  width: 30vw;
-  height: 30vw;
-  max-width: 200px;
-  max-height: 200px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid #fff;
-  box-shadow: 0 0 1vh rgba(255,255,255,0.3);
-  transition: transform 0.2s ease;
-  margin: 0 auto;
-}
-
-.profile-circle img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-/* Заголовок и параграф */
+/* Заголовки и параграфы */
 h1 {
   font-size: 3vh;
   margin-top: 2vh;
@@ -159,22 +145,8 @@ p {
   font-size: 2vh;
 }
 
-/* Кнопка воспроизведения музыки */
-#startMusicBtn {
-  position: fixed;
-  top: 1vh;
-  right: 1vw;
-  z-index: 10;
-  padding: 1vh 2vw;
-  background: #444;
-  color: #fff;
-  border: none;
-  border-radius: 0.5vh;
-  cursor: pointer;
-  font-size: 2vh;
-}
 
-/* Раздел вывода средств */
+/* Блок вывода средств */
 .withdraw-section {
   background: linear-gradient(135deg, #222, #444);
   border-radius: 10px;
@@ -219,6 +191,7 @@ p {
   color: #fff;
 }
 
+/* Реквизиты */
 .requisites-container {
   display: none;
   margin-top: 2vh;
@@ -235,6 +208,7 @@ p {
   color: #fff;
 }
 
+/* Опции оплаты */
 .payment-options {
   display: flex;
   justify-content: center;
@@ -261,6 +235,7 @@ p {
   transform: translateY(-2px);
 }
 
+/* Кнопка подтверждения */
 .withdraw-submit {
   display: block;
   margin: 4vh auto 0 auto;
@@ -278,7 +253,7 @@ p {
   background-color: #45a049;
 }
 
-/* Верхнее уведомление */
+/* Уведомление */
 #topNotification {
   position: fixed;
   top: -50px;
@@ -305,7 +280,7 @@ p {
   background: #4CAF50;
 }
 
-/* Статус заявки */
+/* Статус */
 .status {
   display: inline-block;
   padding: 0.2em 0.5em;
@@ -325,10 +300,10 @@ p {
   color: #fff;
 }
 
-/* Новый класс для отображения имени пользователя */
+/* Отображение имени */
 .username-display {
   position: absolute;
-  top: 6vh; /* чуть ниже блока balance */
+  top: 6vh;
   left: 2vw;
   background: rgba(34, 34, 34, 0.8);
   padding: 1vh 2vw;
@@ -341,7 +316,7 @@ p {
   color: #fff;
 }
 
-/* Новая форма для ввода имени пользователя */
+/* Форма ввода имени */
 .enter-username-form {
   position: fixed;
   top: 50%;
@@ -357,12 +332,10 @@ p {
   font-family: 'Inter', sans-serif;
   color: #fff;
 }
-
 .enter-username-form label {
   display: block;
   margin-bottom: 1vh;
 }
-
 .enter-username-form input[type="text"] {
   width: 100%;
   padding: 1vh;
@@ -373,7 +346,6 @@ p {
   border: none;
   outline: none;
 }
-
 .enter-username-form button {
   margin-top: 1vh;
   padding: 1vh 2vw;
@@ -385,24 +357,11 @@ p {
   cursor: pointer;
   transition: background 0.3s;
 }
-
 .enter-username-form button:hover {
   background-color: #45a049;
 }
 
-/* Медиа-запрос для мобильных устройств */
-@media(max-width: 600px) {
-  body {
-    font-size: 2.2vh;
-  }
-  .balance {
-    font-size: 2vh;
-  }
-  #content {
-    margin-top: 20vh;
-  }
-}
-
+/* Игровой контейнер */
 .game-container {
   text-align: center;
   margin-top: 50px;
@@ -412,232 +371,205 @@ p {
   color: #fff;
 }
 
-.team-selection {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
+/* Адаптивность */
+@media only screen and (max-width: 768px) {
+  body {
+    font-size: 1.5rem;
+  }
+  .balance {
+    font-size: 1.5rem;
+  }
+  #content {
+    margin-top: 20vh;
+  }
+  .profile-circle {
+    width: 20vw;
+    height: 20vw;
+    max-width: 150px;
+    max-height: 150px;
+  }
+  h1 {
+    font-size: 2.5rem;
+  }
+  p {
+    font-size: 2rem;
+  }
+  .menu-item {
+    font-size: 1.5rem;
+  }
+  .icon {
+    font-size: 3rem;
+  }
+  .label {
+    font-size: 1.5rem;
+  }
+  .withdraw-section {
+    padding: 1.5rem;
+  }
+  .withdraw-title {
+    font-size: 2.5rem;
+  }
+  .amount-input {
+    font-size: 1.5rem;
+  }
+  .payment-card {
+    font-size: 1.5rem;
+  }
+  .withdraw-submit {
+    font-size: 1.5rem;
+  }
+  #topNotification {
+    font-size: 1.5rem;
+  }
+  .game-container {
+    margin-top: 30px;
+  }
+  .circle-button {
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    font-size: 14px;
+  }
+  #betAmount {
+    font-size: 14px;
+  }
+  #playButton {
+    font-size: 14px;
+  }
+  #resultAnnouncement {
+    font-size: 18px;
+  }
+  .star-emoji {
+    font-size: 80px;
+  }
+  .ad-button {
+    width: 100px;
+    height: 100px;
+  }
 }
 
-.circle-button {
-  width: 100px;
-  height: 100px;
-  line-height: 100px;
-  border-radius: 50%;
-  background-color: #4CAF50;
-  color: #fff;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s;
-  margin: 0 10px;
+@media only screen and (max-width: 480px) {
+  body {
+    font-size: 1.2rem;
+  }
+  .balance {
+    font-size: 1.2rem;
+  }
+  #content {
+    margin-top: 15vh;
+  }
+  .profile-circle {
+    width: 15vw;
+    height: 15vw;
+    max-width: 100px;
+    max-height: 100px;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  p {
+    font-size: 1.5rem;
+  }
+  .menu-item {
+    font-size: 1.2rem;
+  }
+  .icon {
+    font-size: 2.5rem;
+  }
+  .label {
+    font-size: 1.2rem;
+  }
+  .withdraw-section {
+    padding: 1rem;
+  }
+  .withdraw-title {
+    font-size: 2rem;
+  }
+  .amount-input {
+    font-size: 1.2rem;
+  }
+  .payment-card {
+    font-size: 1.2rem;
+  }
+  .withdraw-submit {
+    font-size: 1.2rem;
+  }
+  #topNotification {
+    font-size: 1.2rem;
+  }
+  .game-container {
+    margin-top: 20px;
+  }
+  .circle-button {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 12px;
+  }
+  #betAmount {
+    font-size: 12px;
+  }
+  #playButton {
+    font-size: 12px;
+  }
+  #resultAnnouncement {
+    font-size: 16px;
+  }
+  .star-emoji {
+    font-size: 60px;
+  }
+  .ad-button {
+    width: 80px;
+    height: 80px;
+  }
 }
 
-.circle-button:hover {
-  background-color: #45a049;
-}
-
-.bet-entry {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-#betAmount {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 4px;
-  background: #555;
-  color: #fff;
-  border: none;
-  outline: none;
-  margin-bottom: 10px;
-}
-
-#playButton {
-  padding: 10px 20px;
-  background-color: #4CAF50;
-  color: white;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-#playButton:disabled {
-  background-color: #ccc;
-  cursor: default;
-}
-
-#playButton:enabled:hover {
-  background-color: #45a049;
-}
-
-#resultAnnouncement {
-  font-size: 24px;
-  color: #FFD700;
-  margin-top: 20px;
-}
-
-.ad-button {
-  display: inline-block;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background-color: #ffc107;
-  color: white;
-  font-size: 24px;
-  line-height: 60px;
-  text-align: center;
-  margin-left: auto;
-  cursor: pointer;
-}
-
-.ad-button:hover {
-  transform: scale(1.1); /* Увеличение размера при наведении */
-  transition: all 0.3s ease-in-out;
-}
-/* Общие настройки кнопки */
-.ad-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: transparent;
-  border: 3px solid #ffc107;
-  color: #ffc107;
-  font-size: 16px;
-  line-height: normal;
-  text-align: center;
-  cursor: pointer;
-  pointer-events: auto;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.ad-button:hover {
-  transform: scale(1.1);
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-}
-
-/* Отдельные элементы кнопки */
-.ad-icon {
-  font-size: 36px;
-  margin-bottom: 5px;
-}
-
-.money-icon {
-  font-size: 24px;
-  margin-top: 5px;
-}
-
-.ad-text {
-  font-size: 12px;
-  word-break: keep-all;
-}
-
-.center-container {
+/* Центрированная кнопка с изображением в виде круга */
+.centered-image-button {
   position: fixed;
-  top: -500px; /* Постоянное расстояние от верха экрана */
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, 0); /* Сохраним горизонтальное центрирование */
-  z-index: 1000;
-  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 101;
 }
 
-.ad-button {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 300px; /* Увеличенный диаметр */
-  height: 300px; /* Увеличенный диаметр */
-  border-radius: 50%; /* Сохраняем круглую форму */
-  background-color: transparent;
-  border: 3px solid #ffc107;
-  color: #ffc107;
-  font-size: 18px; /* Немного увеличим размер шрифта */
-  line-height: 1.2;
-  text-align: center;
+.photo-button {
+  width: 250px;
+  height: 250px;
+  background: transparent;
+  border: none;
+  padding: 0;
   cursor: pointer;
-  pointer-events: auto;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.ad-button:hover {
-  transform: scale(1.1);
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-}
-
-.online-count {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: #ffffff;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 16px;
-  z-index: 1000;
-}
-
-#playerCount {
-  font-weight: bold;
-}
-
-.profile-circle {
-  position: relative;
-  top: 390px; /* сместит круг вниз на 50px */
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-.star-emoji {
-  position: absolute;
-  font-size: 100px; /* размер эмодзи */
-  top: 40%; /* измените это значение, чтобы сместить вниз */
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
 }
 
-/* Стиль для контейнера звезды внутри кнопки */
-.ad-button .star-emoji {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 100px; /* или другой размер, по необходимости */
-  pointer-events: none;
-  z-index: 2;
-}
-
-/* Стиль для белого круга внутри кнопки */
-.ad-button .profile-circle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 150px;
-  height: 150px;
+.photo-button img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
   border-radius: 50%;
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  z-index: 1;
+  box-shadow: 0 0 10px rgb(0, 225, 255);
 }
+
+/* Стиль кнопки "Вывести деньги" */
+.withdraw-button {
+  margin-top: 600px;
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #2909df96; /* цвет кнопки */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.withdraw-button:hover {
+  background-color: #00ffea;
+}
+
+
+
 
