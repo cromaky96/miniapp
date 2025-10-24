@@ -1,0 +1,163 @@
+/* Общие стили */
+body {
+  background-color: #000000f5;
+  color: #fff;
+  margin: 0;
+  padding-bottom: 80px;
+  font-family: 'Inter', Arial, sans-serif;
+  height: 100vh;
+}
+
+/* Блок баланса */
+.balance {
+  position: absolute;
+  top: 2vh;
+  left: 2vw;
+  background: rgba(34, 34, 34, 0.8);
+  padding: 1vh 2vw;
+  border-radius: 8px;
+  font-size: 2vh;
+  font-weight: 600;
+  box-shadow: 0 0 1vh rgba(0,0,0,0.5);
+  z-index: 1;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Имя пользователя */
+.username-display {
+  position: absolute;
+  top: 6vh;
+  left: 2vw;
+  background: rgba(34, 34, 34, 0.8);
+  padding: 1vh 2vw;
+  border-radius: 8px;
+  font-size: 2vh;
+  font-weight: 600;
+  box-shadow: 0 0 1vh rgba(0,0,0,0.5);
+  z-index: 1;
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+}
+
+/* Меню */
+.menu {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(to top, #111, #222);
+  display: flex;
+  justify-content: space-around;
+  padding: 1vh 0;
+  box-shadow: 0 -0.5vh 1vh rgba(0,0,0,0.7);
+  backdrop-filter: blur(5px);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  z-index: 100;
+  font-family: 'Inter', sans-serif;
+}
+
+.menu-item {
+  flex: 1;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  padding: 1vh 0;
+  transition: background 0.3s, transform 0.2s;
+  outline: none;
+  font-weight: 600;
+  font-size: 2.2vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  margin: 0 4px;
+  cursor: pointer;
+}
+
+.menu-item:hover {
+  background: linear-gradient(to top, #333, #555);
+  transform: translateY(-2px);
+}
+
+.icon {
+  font-size: 4vh;
+  margin-bottom: 0.5vh;
+}
+
+.label {
+  font-size: 2vh;
+}
+
+/* Заголовки */
+h2 {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 24px;
+  color: #ff009d;
+}
+
+/* Карточки контейнер */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+/* Карточки с эффектами и градиентами */
+.card {
+  background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+  border-radius: 15px;
+  padding: 25px;
+  width: 220px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Заголовки внутри карточек */
+.card h3 {
+  margin-bottom: 12px;
+  font-size: 20px;
+  color: #fff;
+}
+
+/* Описание внутри карточек */
+.card p {
+  font-size: 14px;
+  color: #fff;
+  line-height: 1.4;
+}
+
+/* Кнопки выбора с более современным стилем */
+.select-button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  background-color: #ff6f61;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+.select-button:hover {
+  background-color: #ff3b2e;
+  transform: scale(1.05);
+}
+
+/* Выделенная карточка */
+.card.active {
+  border: 3px solid #ffd700;
+  box-shadow: 0 0 20px #ffd700;
+}
