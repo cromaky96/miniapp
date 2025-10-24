@@ -555,7 +555,7 @@ p {
 
 /* Стиль кнопки "Вывести деньги" */
 .withdraw-button {
-  margin-top: 600px;
+  margin-top: 535px;
   padding: 10px 20px;
   font-size: 18px;
   background-color: #2909df96; /* цвет кнопки */
@@ -569,6 +569,8 @@ p {
 .withdraw-button:hover {
   background-color: #00ffea;
 }
+
+
 
 
 
