@@ -126,68 +126,6 @@ p {
 }
 
 
-/* Блок вывода средств */
-.withdraw-section {
-  background: linear-gradient(135deg, #222, #444);
-  border-radius: 10px;
-  padding: 2vh 3vw;
-  margin-top: 3vh;
-  box-shadow: 0 0 1vh rgba(0,0,0,0.5);
-  max-width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  font-family: 'Inter', sans-serif;
-}
-
-.withdraw-title {
-  font-size: 3vh;
-  margin-bottom: 2vh;
-  color: #fff;
-  text-align: center;
-  font-weight: 600;
-}
-
-.amount-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 2vh;
-}
-
-.amount-label {
-  font-size: 2.2vh;
-  margin-right: 1vw;
-}
-
-.amount-input {
-  font-size: 2.2vh;
-  padding: 0.5vh 1vw;
-  border-radius: 0.5vh;
-  border: none;
-  outline: none;
-  width: 20vw;
-  max-width: 150px;
-  background: #555;
-  color: #fff;
-}
-
-/* Реквизиты */
-.requisites-container {
-  display: none;
-  margin-top: 2vh;
-}
-
-.requisites-input {
-  width: 100%;
-  padding: 0.5vh 1vw;
-  font-size: 2vh;
-  border-radius: 0.5vh;
-  border: none;
-  outline: none;
-  background: #555;
-  color: #fff;
-}
-
 /* Отображение имени */
 .username-display {
   position: absolute;
@@ -236,7 +174,7 @@ p {
 
 /* Стиль кнопки "Вывести деньги" */
 .withdraw-button {
-  margin-top: 535px;
+  margin-top: 555px;
   padding: 10px 20px;
   font-size: 18px;
   background-color: #2909df96; /* цвет кнопки */
@@ -250,6 +188,9 @@ p {
 .withdraw-button:hover {
   background-color: #00ffea;
 }
+
+
+
 
 
 
