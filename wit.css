@@ -75,6 +75,25 @@ body {
   cursor: pointer;
 }
 
+
+.menu-item {
+  flex: 1;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  padding: 1vh 0;
+  transition: background 0.3s, transform 0.2s;
+  outline: none;
+  font-weight: 600;
+  font-size: 2.2vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  margin: 0 4px;
+  cursor: pointer;
+}
 .menu-item:hover {
   background: linear-gradient(to top, #333, #555);
   transform: translateY(-2px);
@@ -161,3 +180,4 @@ h2 {
   border: 3px solid #ffd700;
   box-shadow: 0 0 20px #ffd700;
 }
+
