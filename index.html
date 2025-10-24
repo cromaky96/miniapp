@@ -3,55 +3,69 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Мой сайт</title>
+<title>Мой сайт - Главная</title>
 <link href="styles.css" rel="stylesheet" />
 </head>
 <body>
+<!-- Центрированная кнопка с фотографией -->
+<div class="centered-image-button">
+  <button class="photo-button">
+    <img src="q.jpg" alt="Фото" />
+  </button>
+</div>
+
+<!-- Онлайн счетчик -->
 <div class="online-count">
   Онлайн игроков: <span id="playerCount">Загрузка...</span>
 </div>
-<div class="profile-circle" id="profileCircle">
-  <img src="images/kat.jpg" alt="Моя фотография" />
-  <div class="star-emoji">⭐</div> <!-- Белая звезда -->
-</div>
+
+<!-- Фон сердечек -->
 <div class="hearts-background" id="heartsBackground"></div>
+
+<!-- Баланс -->
 <div class="balance" id="balance">Ваш баланс: 0</div>
-<div id="content"></div>
-<div class="profile-container" id="profileContainer" style="display: none;">
-  <div class="profile-circle" id="profileCircle">
-    <img src="images/kat.jpg" alt="Моя фотография" />
-  </div>
-</div>
+
+
+
+<!-- Заголовки и параграфы -->
 <h1 id="mainTitle"></h1>
 <p id="mainParagraph"></p>
+<!-- Кнопка "Вывести деньги" -->
+<div class="withdraw-button-container" style="text-align: center; margin-top: 20px;">
+  <button id="withdrawButton" class="withdraw-button">Вывести деньги</button>
+</div>
+
+<!-- Меню -->
 <div class="menu">
   <div class="center-container">
-    <a href="#" class="ad-button" data-page="advertising"></a> <!-- Удалила эмодзи -->
+    <a href="advertising.html" class="ad-button" data-page="advertising"></a>
   </div>
-  <a href="#" class="menu-item" data-page="main">
+  <a href="index.html" class="menu-item" data-page="main">
     <div class="icon">🏠</div>
     <div class="label">Главная</div>
   </a>
-  <a href="#" class="menu-item" data-page="withdraw">
+  <a href="withdraw.html" class="menu-item" data-page="withdraw">
     <div class="icon">💰</div>
     <div class="label">Вывод</div>
   </a>
-  <a href="#" class="menu-item" data-page="history">
+  <a href="history.html" class="menu-item" data-page="history">
     <div class="icon">📜</div>
     <div class="label">История</div>
   </a>
-  <a href="#" class="menu-item" data-page="help">
+  <a href="help.html" class="menu-item" data-page="help">
     <div class="icon">❓</div>
     <div class="label">Помощь</div>
   </a>
 </div>
 
-<!-- Верхнее уведомление -->
+<!-- Уведомление -->
 <div id="topNotification"></div>
 
-<script src="utils.js"></script>
-<script src="payment.js"></script>
-<script src="app.js"></script>
+<!-- Скрипты -->
+<script>
+  // Можно сюда добавить ваши скрипты
+</script>
 </body>
 </html>
+
 
