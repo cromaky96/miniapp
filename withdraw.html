@@ -33,26 +33,26 @@
     <div class="label">Помощь</div>
   </a>
 </div>
-
-<!-- Блок карточек выбора способа вывода -->
-<div style="text-align: center; margin-top: 20px; font-size: 2vh; color: #fff;">
-  Выберите способ вывода
-</div>
-<div class="cards-container">
-  <div class="card" data-option="card" style="background:#222; padding:20px; border-radius:10px; cursor:pointer;">
-    <h3>Ton</h3>
-    <p>Оплата через cryptobot</p>
-    <button class="select-button">Выбрать</button>
+<h2 style="text-align:center;">Выберите способ Вывода</h2>
+<div style="display:flex; flex-direction: column; align-items: center; gap: 20px;">
+  <div style="display:flex; gap: 20px;">
+    <div class="card" data-option="card" style="background:#222; padding:20px; border-radius:10px; width:200px; cursor:pointer;">
+      <h3>Ton</h3>
+      <p>Оплата через cryptobot</p>
+      <button class="select-button">Выбрать</button>
+    </div>
+    <div class="card" data-option="wallet" style="background:#222; padding:20px; border-radius:10px; width:200px; cursor:pointer;">
+      <h3>СБП</h3>
+      <p>Оплата по номеру</p>
+      <button class="select-button">Выбрать</button>
+    </div>
   </div>
-  <div class="card" data-option="wallet" style="background:#222; padding:20px; border-radius:10px; cursor:pointer;">
-    <h3>СБП</h3>
-    <p>Оплата по номеру</p>
-    <button class="select-button">Выбрать</button>
-  </div>
-  <div class="card" data-option="bank" style="background:#222; padding:20px; border-radius:10px; cursor:pointer;">
-    <h3>Банковский перевод</h3>
-    <p>Оплата на банковский счет</p>
-    <button class="select-button">Выбрать</button>
+  <div style="display:flex; justify-content: center; margin-top: 20px;">
+    <div class="card" data-option="bank" style="background:#222; padding:20px; border-radius:10px; width:200px; cursor:pointer;">
+      <h3>Банковский перевод</h3>
+      <p>Оплата на банковский счет</p>
+      <button class="select-button">Выбрать</button>
+    </div>
   </div>
 </div>
 
@@ -72,7 +72,10 @@
   <button id="submitBtn" class="select-button" disabled>Вывести</button>
 </div>
 
+
+<!-- Если нужно, можно подключить внешний скрипт отдельно -->
 <script src="win.js"></script>
 </body>
 </html>
+
 
