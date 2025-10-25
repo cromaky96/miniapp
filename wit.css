@@ -107,9 +107,9 @@ body {
 .card {
   background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
   border-radius: 15px;
-  padding: 20px; /* уменьшено */
-  min-width: 150px; /* уменьшена минимальная ширина */
-  max-width: 180px; /* уменьшена максимальная ширина */
+  padding: 15px; /* уменьшено */
+  min-width: 120px; /* уменьшена минимальная ширина */
+  max-width: 140px; /* уменьшена максимальная ширина */
   flex-shrink: 0; /* чтобы не сжимались */
   text-align: center;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -154,14 +154,29 @@ body {
   box-shadow: 0 0 20px #ffd700;
 }
 
-/* Медиазапросы для мобильных — размеры карточек и текста уменьшаем */
-@media (max-width: 768px) {
+/* Стиль для карточки ввода ревизитов */
+.review-input-card {
+  min-width: 80px;   /* уменьшено минимальное значение */
+  max-width: 100px;  /* уменьшено максимальное значение */
+  padding: 8px;      /* уменьшено внутреннее пространство */
+  font-size: 0.8em;  /* уменьшен размер текста */
+}
+
+/* Медиазапросы для мобильных и устройств разного размера */
+@media (max-width: 1024px) {
+  /* Для планшетов и небольших ноутбуков */
+  .review-input-card {
+    min-width: 70px;
+    max-width: 90px;
+    padding: 6px;
+    font-size: 0.75em;
+  }
   .card {
-    min-width: 130px;
-    max-width: 150px;
+    min-width: 110px;
+    max-width: 130px;
   }
   .icon {
-    font-size: 2.5vh;
+    font-size: 3vh;
   }
   .card h3 {
     font-size: 14px;
@@ -169,10 +184,39 @@ body {
   .card p {
     font-size: 10px;
   }
+  .menu-item {
+    font-size: 2vh;
+  }
 }
 
-/* Удалить или опустить надпись "выберите способ вывода" — если есть, добавим пример */
-
+@media (max-width: 768px) {
+  /* Для смартфонов */
+  body {
+    padding-bottom: 100px; /* чуть больше пространства под меню */
+  }
+  .review-input-card {
+    min-width: 60px;
+    max-width: 80px;
+    padding: 4px;
+    font-size: 0.7em;
+  }
+  .card {
+    min-width: 100px;
+    max-width: 120px;
+  }
+  .icon {
+    font-size: 2.5vh;
+  }
+  .card h3 {
+    font-size: 13px;
+  }
+  .card p {
+    font-size: 9px;
+  }
+  .menu-item {
+    font-size: 2vh;
+  }
+}
 
 
 
