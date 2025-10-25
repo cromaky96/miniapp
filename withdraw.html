@@ -33,47 +33,41 @@
     <div class="label">Помощь</div>
   </a>
 </div>
-<h2 style="text-align:center;">Выберите способ Вывода</h2>
-<div style="display:flex; flex-direction: column; align-items: center; gap: 20px;">
-  <div style="display:flex; gap: 20px;">
-    <div class="card" data-option="card" style="background:#222; padding:20px; border-radius:10px; width:200px; cursor:pointer;">
-      <h3>Ton</h3>
-      <p>Оплата через cryptobot</p>
-      <button class="select-button">Выбрать</button>
-    </div>
-    <div class="card" data-option="wallet" style="background:#222; padding:20px; border-radius:10px; width:200px; cursor:pointer;">
-      <h3>СБП</h3>
-      <p>Оплата по номеру</p>
-      <button class="select-button">Выбрать</button>
+
+<h2>Выберите способ вывода</h2>
+<!-- Карточка вывода средств -->
+<div class="withdraw-card">
+  <h3 class="card-title">Вывод средств</h3>
+  
+  <!-- Выбор платежной системы -->
+  <div class="payment-methods">
+    <label class="payment-label">Выберите платежную систему:</label>
+    <div class="methods-options">
+      <button class="method-btn active" data-method="PayPal">USDT(CB)</button>
+      <button class="method-btn" data-method="Карта">БАНК.КАРТЫ</button>
+      <button class="method-btn" data-method="Qiwi">СБП</button>
+      <button class="method-btn" data-method="ЮMoney">ЮМАНИ</button>
     </div>
   </div>
-  <div style="display:flex; justify-content: center; margin-top: 20px;">
-    <div class="card" data-option="bank" style="background:#222; padding:20px; border-radius:10px; width:200px; cursor:pointer;">
-      <h3>Банковский перевод</h3>
-      <p>Оплата на банковский счет</p>
-      <button class="select-button">Выбрать</button>
-    </div>
+    
+<!-- Укажите реквизиты -->
+<div class="requisites-input">
+  <label for="requisites">Реквизиты:</label>
+  <input type="text" id="requisites" placeholder="Введите ваши реквизиты" />
+</div>
+  <!-- Ввод суммы -->
+  <div class="amount-input">
+    <label for="amount">Сумма к выводу:</label>
+    <input type="number" id="amount" placeholder="Введите сумму" min="1" />
+  </div>
+  
+  <!-- Кнопка вывести -->
+  <div class="withdraw-button-container">
+    <button class="withdraw-btn">Вывести</button>
   </div>
 </div>
 
-<!-- Форма для реквизитов и суммы -->
-<div style="max-width:400px; margin:20px auto; padding:20px; background:#222; border-radius:10px;">
-  <div style="margin-bottom:10px;">
-    <strong>Выбранный способ:</strong> <span id="selectedMethod">Не выбран</span>
-  </div>
-  <div style="margin-bottom:10px;">
-    <label for="requisites">Реквизиты:</label><br/>
-    <input type="text" id="requisites" style="width:100%; padding:8px; border-radius:4px; border:none;"/>
-  </div>
-  <div style="margin-bottom:10px;">
-    <label for="amount">Сумма:</label><br/>
-    <input type="number" id="amount" style="width:100%; padding:8px; border-radius:4px; border:none;"/>
-  </div>
-  <button id="submitBtn" class="select-button" disabled>Вывести</button>
-</div>
-
-
-<!-- Если нужно, можно подключить внешний скрипт отдельно -->
+<!-- Скрипт -->
 <script src="win.js"></script>
 </body>
 </html>
