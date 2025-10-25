@@ -4,10 +4,10 @@ body {
   background-color: #000000f5;
   color: #fff;
   margin: 0;
-  padding-bottom: 80px; /* чтобы не загораживать меню */
+  padding-bottom: 80px; /* под меню */
   font-family: 'Inter', Arial, sans-serif;
   min-height: 100vh;
-  overflow: hidden; /* запрет вертикальной прокрутки */
+  overflow: hidden; /* вертикальная прокрутка отключена */
   display: flex;
   flex-direction: column;
 }
@@ -24,7 +24,6 @@ body {
   font-weight: 600;
   box-shadow: 0 0 1vh rgba(0,0,0,0.5);
   z-index: 1;
-  font-family: 'Inter', sans-serif;
 }
 
 /* Имя пользователя */
@@ -39,11 +38,10 @@ body {
   font-weight: 600;
   box-shadow: 0 0 1vh rgba(0,0,0,0.5);
   z-index: 1;
-  font-family: 'Inter', sans-serif;
   color: #fff;
 }
 
-/* Меню фиксировано снизу, адаптивное */
+/* Меню фиксировано снизу */
 .menu {
   position: fixed;
   bottom: 0;
@@ -95,22 +93,24 @@ body {
   font-size: 2vh;
 }
 
-/* Карточки — делаем горизонтальными с прокруткой на мобильных */
+/* Карточки — горизонтальные с прокруткой */
 .cards-container {
   display: flex;
-  justify-content: center; /* или space-around, по желанию */
-  gap: 20px; /* промежутки между карточками */
-  flex-wrap: nowrap; /* чтобы не переносить карточки на новую строку */
-  overflow-x: auto; /* при необходимости - горизонтальная прокрутка, если карточек больше, чем ширина экрана */
+  justify-content: center;
+  gap: 2vw; /* пропорциональный промежуток */
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 2vh 2vw;
 }
+
 /* Карточки */
 .card {
   background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
   border-radius: 15px;
-  padding: 15px; /* уменьшено */
-  min-width: 120px; /* уменьшена минимальная ширина */
-  max-width: 140px; /* уменьшена максимальная ширина */
-  flex-shrink: 0; /* чтобы не сжимались */
+  padding: 1.5vh;
+  min-width: 15vw; /* пропорциональный размер */
+  max-width: 25vw;
+  flex-shrink: 0;
   text-align: center;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s, box-shadow 0.3s;
@@ -122,26 +122,26 @@ body {
 }
 .card h3 {
   margin-bottom: 8px;
-  font-size: 16px; /* уменьшено */
+  font-size: 1.5em;
   color: #fff;
 }
 .card p {
-  font-size: 12px; /* уменьшено */
+  font-size: 1em;
   color: #fff;
   line-height: 1.2;
 }
 
 /* Кнопки */
 .select-button {
-  margin-top: 20px;
-  padding: 12px 25px;
+  margin-top: 2vh;
+  padding: 1.5vh 3vw;
   background-color: #ff6f61;
   color: #fff;
   border: none;
-  border-radius: 25px;
-  font-size: 14px;
+  border-radius: 2vh;
+  font-size: 1.2em;
   font-weight: bold;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 0.5vh 1vh rgba(0,0,0,0.2);
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
 }
@@ -150,39 +150,38 @@ body {
   transform: scale(1.05);
 }
 .card.active {
-  border: 3px solid #ffd700;
-  box-shadow: 0 0 20px #ffd700;
+  border: 0.3em solid #ffd700;
+  box-shadow: 0 0 1em #ffd700;
 }
 
 /* Стиль для карточки ввода ревизитов */
 .review-input-card {
-  min-width: 80px;   /* уменьшено минимальное значение */
-  max-width: 100px;  /* уменьшено максимальное значение */
-  padding: 8px;      /* уменьшено внутреннее пространство */
-  font-size: 0.8em;  /* уменьшен размер текста */
+  min-width: 8vw;
+  max-width: 12vw;
+  padding: 0.8vh;
+  font-size: 0.75em;
 }
 
-/* Медиазапросы для мобильных и устройств разного размера */
+/* Медиазапросы для точной подгонки */
 @media (max-width: 1024px) {
-  /* Для планшетов и небольших ноутбуков */
   .review-input-card {
-    min-width: 70px;
-    max-width: 90px;
-    padding: 6px;
-    font-size: 0.75em;
+    min-width: 7vw;
+    max-width: 10vw;
+    padding: 0.6vh;
+    font-size: 0.7em;
   }
   .card {
-    min-width: 110px;
-    max-width: 130px;
+    min-width: 12vw;
+    max-width: 20vw;
   }
   .icon {
     font-size: 3vh;
   }
   .card h3 {
-    font-size: 14px;
+    font-size: 1.4em;
   }
   .card p {
-    font-size: 10px;
+    font-size: 0.9em;
   }
   .menu-item {
     font-size: 2vh;
@@ -192,31 +191,32 @@ body {
 @media (max-width: 768px) {
   /* Для смартфонов */
   body {
-    padding-bottom: 100px; /* чуть больше пространства под меню */
+    padding-bottom: 110px; /* чуть больше пространства под меню */
   }
   .review-input-card {
-    min-width: 60px;
-    max-width: 80px;
-    padding: 4px;
-    font-size: 0.7em;
+    min-width: 6vw;
+    max-width: 8vw;
+    padding: 0.5vh;
+    font-size: 0.65em;
   }
   .card {
-    min-width: 100px;
-    max-width: 120px;
+    min-width: 10vw;
+    max-width: 18vw;
   }
   .icon {
     font-size: 2.5vh;
   }
   .card h3 {
-    font-size: 13px;
+    font-size: 1.2em;
   }
   .card p {
-    font-size: 9px;
+    font-size: 0.8em;
   }
   .menu-item {
-    font-size: 2vh;
+    font-size: 1.8vh;
   }
 }
+
 
 
 
