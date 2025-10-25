@@ -1,20 +1,18 @@
 /* Общие стили */
-body {
-  background-color: #000000f5;
-  color: #fff;
-  margin: 0;
-  padding-bottom: 80px;
-  font-family: 'Inter', Arial, sans-serif;
-  min-height: 100vh;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
+ body {
+    background-color: #000000;
+    color: #fff;
+    margin: 0;
+    padding-bottom: 80px;
+    font-family: 'Inter', Arial, sans-serif;
+    height: 100vh;
+    overflow: hidden; /* отключаем прокрутку */
+  }
 
 /* Заголовок */
 h2 {
   text-align: center;
-  margin: 1.5vh 2vw;
+  margin: 6vh 2vw 4vh 2vw; /* увеличиваем нижний отступ */
   font-size: 2vh;
 }
 
@@ -81,143 +79,153 @@ h2 {
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  margin: 0 2px; /* меньше отступов между кнопками */
+  margin: 0 2px;
 }
-.menu-item:hover {
-  background: linear-gradient(to top, #333, #555);
+
+  .menu-item:hover {
+    background: linear-gradient(to top, #333, #555);
+    transform: translateY(-2px);
+  }
+
+  .icon {
+    font-size: 4vh;
+    margin-bottom: 0.5vh;
+  }
+
+  .label {
+    font-size: 2vh;
+  }
+
+/* Общий стиль карточки вывода */
+.withdraw-card {
+  max-width: 400px;
+  margin-top: 5vh;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: rgba(34, 34, 34, 0.9);
+  border-radius: 12px;
+  box-shadow: 0 0 1vh rgba(0,0,0,0.7);
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+.card-title {
+  text-align: center;
+  font-size: 2vh;
+  margin-bottom: 2vh;
+  color: #fff;
+}
+
+/* Выбор платежной системы */
+.payment-methods {
+  margin-bottom: 2vh;
+}
+
+.payment-label {
+  display: block;
+  margin-bottom: 1vh;
+  font-size: 1.8vh;
+  color: #ddd;
+}
+
+.methods-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1vh;
+  justify-content: center;
+}
+
+.method-btn {
+  padding: 0.8vh 1.5vw;
+  background: linear-gradient(to top, #555, #333);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1.8vh;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.method-btn:hover,
+.method-btn.active {
+  background: linear-gradient(to top, #09cca2, #03b8b8);
   transform: translateY(-2px);
 }
 
-/* Иконки */
-.icon {
-  font-size: 2.5vh;
-  margin-bottom: 0.4vh;
+/* Поле для ввода суммы */
+.amount-input {
+  margin-bottom: 3vh;
+  padding: 0 1vh; /* добавляем внутренние отступы, чтобы элементы не прилипали к краям */
+  box-sizing: border-box; /* чтобы padding учитывался в ширине */
 }
-.label {
+
+/* Метка для суммы */
+.amount-input label {
+  display: block;
+  margin-bottom: 0.8vh;
   font-size: 1.8vh;
+  color: #ddd;
 }
 
-/* Карточки — максимально компактные и близко друг к другу */
-.cards-container {
-  display: flex;
-  justify-content: center;
-  gap: 0.8vw; /* очень узкий зазор */
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  padding: 1.5vh 2vw;
-}
-
-/* Карточки */
-.card {
-  background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
-  border-radius: 12px;
-  padding: 0.8vh;
-  min-width: 6.5vw; /* уменьшено еще больше */
-  max-width: 8vw;
-  flex-shrink: 0;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s, box-shadow 0.3s;
-  cursor: pointer;
-}
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
-.card h3 {
-  margin-bottom: 4px;
-  font-size: 1em;
-  color: #fff;
-}
-.card p {
-  font-size: 0.7em;
-  color: #fff;
-  line-height: 1.2;
-}
-
-/* Кнопки */
-.select-button {
-  margin-top: 1vh;
-  padding: 0.8vh 1.5vw;
-  background-color: #ff6f61;
-  color: #fff;
+/* Поле для ввода суммы */
+#amount {
+  width: 100%;
+  padding: 0.8vh 1vw;
+  border-radius: 8px;
   border: none;
-  border-radius: 1.5vh;
-  font-size: 1.4vh;
-  font-weight: bold;
-  box-shadow: 0 0.3vh 0.6vh rgba(0,0,0,0.2);
+  font-size: 1.8vh;
+  outline: none;
+  box-shadow: inset 0 0 0.5vh rgba(0,0,0,0.5);
+  box-sizing: border-box; /* учитываем padding и border внутри ширины */
+  background-color: #fff; /* делаем фон белым для читаемости */
+  color: #000; /* текст черный для контраста */
+}
+
+/* Кнопка вывода */
+.withdraw-button-container {
+  text-align: center;
+}
+
+.withdraw-btn {
+  padding: 1vh 3vw;
+  background: linear-gradient(to top, #4CAF50, #388E3C);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1.8vh;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-}
-.select-button:hover {
-  background-color: #ff3b2e;
-  transform: scale(1.05);
-}
-.card.active {
-  border: 0.2em solid #ffd700;
-  box-shadow: 0 0 0.8em #ffd700;
+  transition: background 0.3s, transform 0.2s;
 }
 
-/* Ввод ревизитов */
-.review-input-card {
-  min-width: 4.5vw;
-  max-width: 5.5vw;
-  padding: 0.3vh;
-  font-size: 0.55em;
+.withdraw-btn:hover {
+  background: linear-gradient(to top, #66bb6a, #2e7d32);
+  transform: translateY(-2px);
+}
+.requisites-input {
+  margin-bottom: 3vh;
 }
 
-/* Медиазапросы для адаптивности */
-@media(max-width: 1024px) {
-  .review-input-card {
-    min-width: 4vw;
-    max-width: 5vw;
-    padding: 0.3vh;
-    font-size: 0.5em;
-  }
-  .card {
-    min-width: 6vw;
-    max-width: 7.5vw;
-  }
-  .icon {
-    font-size: 2.2vh;
-  }
-  .card h3 {
-    font-size: 0.9em;
-  }
-  .card p {
-    font-size: 0.65em;
-  }
-  .menu-item {
-    font-size: 1.6vh;
-  }
+.requisites-input label {
+  display: block;
+  margin-bottom: 0.8vh;
+  font-size: 1.8vh;
+  color: #ddd;
 }
-@media(max-width: 768px) {
-  body {
-    padding-bottom: 100px;
-  }
-  .review-input-card {
-    min-width: 3.8vw;
-    max-width: 4.8vw;
-    padding: 0.2vh;
-    font-size: 0.45em;
-  }
-  .card {
-    min-width: 5vw;
-    max-width: 6.5vw;
-  }
-  .icon {
-    font-size: 2vh;
-  }
-  .card h3 {
-    font-size: 0.8em;
-  }
-  .card p {
-    font-size: 0.6em;
-  }
-  .menu-item {
-    font-size: 1.4vh;
-  }
+
+#requisites {
+  width: 100%;
+  padding: 0.8vh 1vw;
+  border-radius: 8px;
+  border: none;
+  font-size: 1.8vh;
+  outline: none;
+  box-shadow: inset 0 0 0.5vh rgba(0,0,0,0.5);
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #000;
 }
+
 
 
 
