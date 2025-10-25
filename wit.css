@@ -1,15 +1,21 @@
-/* Общие стили остаются без изменений */
-
+/* Общие стили */
 body {
   background-color: #000000f5;
   color: #fff;
   margin: 0;
-  padding-bottom: 80px; /* под меню */
+  padding-bottom: 80px;
   font-family: 'Inter', Arial, sans-serif;
   min-height: 100vh;
-  overflow: hidden; /* вертикальная прокрутка отключена */
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+}
+
+/* Заголовок */
+h2 {
+  text-align: center;
+  margin: 1.5vh 2vw;
+  font-size: 2vh;
 }
 
 /* Блок баланса */
@@ -18,11 +24,11 @@ body {
   top: 2vh;
   left: 2vw;
   background: rgba(34, 34, 34, 0.8);
-  padding: 1vh 2vw;
+  padding: 0.8vh 1.5vw;
   border-radius: 8px;
-  font-size: 2vh;
+  font-size: 1.8vh;
   font-weight: 600;
-  box-shadow: 0 0 1vh rgba(0,0,0,0.5);
+  box-shadow: 0 0 0.8vh rgba(0,0,0,0.5);
   z-index: 1;
 }
 
@@ -32,16 +38,16 @@ body {
   top: 6vh;
   left: 2vw;
   background: rgba(34, 34, 34, 0.8);
-  padding: 1vh 2vw;
+  padding: 0.8vh 1.5vw;
   border-radius: 8px;
-  font-size: 2vh;
+  font-size: 1.8vh;
   font-weight: 600;
-  box-shadow: 0 0 1vh rgba(0,0,0,0.5);
+  box-shadow: 0 0 0.8vh rgba(0,0,0,0.5);
   z-index: 1;
   color: #fff;
 }
 
-/* Меню фиксировано снизу */
+/* Меню фиксированное снизу */
 .menu {
   position: fixed;
   bottom: 0;
@@ -49,9 +55,9 @@ body {
   background: linear-gradient(to top, #111, #222);
   display: flex;
   justify-content: space-around;
-  padding: 1vh 0;
-  box-shadow: 0 -0.5vh 1vh rgba(0,0,0,0.7);
-  backdrop-filter: blur(5px);
+  padding: 0.8vh 0;
+  box-shadow: 0 -0.4vh 0.8vh rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   z-index: 100;
@@ -65,18 +71,17 @@ body {
   text-align: center;
   color: #fff;
   text-decoration: none;
-  padding: 1vh 0;
+  padding: 0.8vh 0;
   transition: background 0.3s, transform 0.2s;
   outline: none;
   font-weight: 600;
-  font-size: 2.2vh;
+  font-size: 1.8vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  margin: 0 4px;
-  cursor: pointer;
+  margin: 0 2px; /* меньше отступов между кнопками */
 }
 .menu-item:hover {
   background: linear-gradient(to top, #333, #555);
@@ -85,63 +90,62 @@ body {
 
 /* Иконки */
 .icon {
-  font-size: 4vh;
-  margin-bottom: 0.5vh;
+  font-size: 2.5vh;
+  margin-bottom: 0.4vh;
 }
-/* Метки */
 .label {
-  font-size: 2vh;
+  font-size: 1.8vh;
 }
 
-/* Карточки — горизонтальные с прокруткой */
+/* Карточки — максимально компактные и близко друг к другу */
 .cards-container {
   display: flex;
   justify-content: center;
-  gap: 2vw; /* пропорциональный промежуток */
+  gap: 0.8vw; /* очень узкий зазор */
   flex-wrap: nowrap;
   overflow-x: auto;
-  padding: 2vh 2vw;
+  padding: 1.5vh 2vw;
 }
 
 /* Карточки */
 .card {
   background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
-  border-radius: 15px;
-  padding: 1.5vh;
-  min-width: 15vw; /* пропорциональный размер */
-  max-width: 25vw;
+  border-radius: 12px;
+  padding: 0.8vh;
+  min-width: 6.5vw; /* уменьшено еще больше */
+  max-width: 8vw;
   flex-shrink: 0;
   text-align: center;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
 }
 .card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  transform: translateY(-6px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 .card h3 {
-  margin-bottom: 8px;
-  font-size: 1.5em;
+  margin-bottom: 4px;
+  font-size: 1em;
   color: #fff;
 }
 .card p {
-  font-size: 1em;
+  font-size: 0.7em;
   color: #fff;
   line-height: 1.2;
 }
 
 /* Кнопки */
 .select-button {
-  margin-top: 2vh;
-  padding: 1.5vh 3vw;
+  margin-top: 1vh;
+  padding: 0.8vh 1.5vw;
   background-color: #ff6f61;
   color: #fff;
   border: none;
-  border-radius: 2vh;
-  font-size: 1.2em;
+  border-radius: 1.5vh;
+  font-size: 1.4vh;
   font-weight: bold;
-  box-shadow: 0 0.5vh 1vh rgba(0,0,0,0.2);
+  box-shadow: 0 0.3vh 0.6vh rgba(0,0,0,0.2);
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
 }
@@ -150,70 +154,68 @@ body {
   transform: scale(1.05);
 }
 .card.active {
-  border: 0.3em solid #ffd700;
-  box-shadow: 0 0 1em #ffd700;
+  border: 0.2em solid #ffd700;
+  box-shadow: 0 0 0.8em #ffd700;
 }
 
-/* Стиль для карточки ввода ревизитов */
+/* Ввод ревизитов */
 .review-input-card {
-  min-width: 8vw;
-  max-width: 12vw;
-  padding: 0.8vh;
-  font-size: 0.75em;
+  min-width: 4.5vw;
+  max-width: 5.5vw;
+  padding: 0.3vh;
+  font-size: 0.55em;
 }
 
-/* Медиазапросы для точной подгонки */
-@media (max-width: 1024px) {
+/* Медиазапросы для адаптивности */
+@media(max-width: 1024px) {
   .review-input-card {
-    min-width: 7vw;
-    max-width: 10vw;
-    padding: 0.6vh;
-    font-size: 0.7em;
+    min-width: 4vw;
+    max-width: 5vw;
+    padding: 0.3vh;
+    font-size: 0.5em;
   }
   .card {
-    min-width: 12vw;
-    max-width: 20vw;
+    min-width: 6vw;
+    max-width: 7.5vw;
   }
   .icon {
-    font-size: 3vh;
+    font-size: 2.2vh;
   }
   .card h3 {
-    font-size: 1.4em;
-  }
-  .card p {
     font-size: 0.9em;
   }
-  .menu-item {
-    font-size: 2vh;
-  }
-}
-
-@media (max-width: 768px) {
-  /* Для смартфонов */
-  body {
-    padding-bottom: 110px; /* чуть больше пространства под меню */
-  }
-  .review-input-card {
-    min-width: 6vw;
-    max-width: 8vw;
-    padding: 0.5vh;
+  .card p {
     font-size: 0.65em;
   }
+  .menu-item {
+    font-size: 1.6vh;
+  }
+}
+@media(max-width: 768px) {
+  body {
+    padding-bottom: 100px;
+  }
+  .review-input-card {
+    min-width: 3.8vw;
+    max-width: 4.8vw;
+    padding: 0.2vh;
+    font-size: 0.45em;
+  }
   .card {
-    min-width: 10vw;
-    max-width: 18vw;
+    min-width: 5vw;
+    max-width: 6.5vw;
   }
   .icon {
-    font-size: 2.5vh;
+    font-size: 2vh;
   }
   .card h3 {
-    font-size: 1.2em;
-  }
-  .card p {
     font-size: 0.8em;
   }
+  .card p {
+    font-size: 0.6em;
+  }
   .menu-item {
-    font-size: 1.8vh;
+    font-size: 1.4vh;
   }
 }
 
