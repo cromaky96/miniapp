@@ -1,0 +1,155 @@
+/* Общие стили */
+body {
+  background-color: #000000;
+  color: #fff;
+  margin: 0;
+  padding-bottom: 80px;
+  font-family: 'Inter', Arial, sans-serif;
+  /* Уберите или измените: */
+  /* height: 100vh; */
+  /* overflow: hidden; */
+}
+.balance {
+  position: absolute;
+  top: 2vh;
+  left: 2vw;
+  background: rgba(34, 34, 34, 0.8);
+  padding: 0.8vh 1.5vw;
+  border-radius: 8px;
+  font-size: 1.8vh;
+  font-weight: 600;
+  box-shadow: 0 0 0.8vh rgba(0,0,0,0.5);
+  z-index: 1;
+}
+/* Меню фиксированное снизу */
+.menu {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(to top, #111, #222);
+  display: flex;
+  justify-content: space-around;
+  padding: 0.8vh 0;
+  box-shadow: 0 -0.4vh 0.8vh rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  z-index: 100;
+  font-family: 'Inter', sans-serif;
+  flex-wrap: nowrap;
+}
+/* Элементы меню */
+.menu-item {
+  flex: 1;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.8vh 0;
+  transition: background 0.3s, transform 0.2s;
+  outline: none;
+  font-weight: 600;
+  font-size: 1.8vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  margin: 0 2px;
+}
+
+  .menu-item:hover {
+    background: linear-gradient(to top, #333, #555);
+    transform: translateY(-2px);
+  }
+
+  .icon {
+    font-size: 4vh;
+    margin-bottom: 0.5vh;
+  }
+
+  .label {
+    font-size: 2vh;
+  }
+
+  /* Верхний блок с изображением и текстом */
+  .header {
+    background-color: #2e2d27; /* красный фон */
+    padding: 20px;
+    position: relative;
+    text-align: center;
+  }
+
+  .header h1 {
+    color: #fff;
+    margin: 0;
+    font-size: 24px;
+  }
+
+  /* Стиль для раздела с вопросами */
+  .content {
+    padding: 20px;
+  }
+
+  .question {
+    font-weight: bold;
+    font-size: 16px;
+    color: #e91e63; /* розовый цвет */
+    margin-top: 20px;
+  }
+
+  .answer {
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* Стиль для уведомления снизу */
+  .bottom-notification {
+    position: fixed;
+    bottom: 20px;
+    width: 90%;
+    max-width: 400px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    font-family: Arial, sans-serif;
+  }
+
+  .icon {
+    font-size: 20px;
+    margin-right: 10px;
+  }
+
+  .text {
+    flex: 1;
+    font-size: 14px;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .custom-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #40ce80; /* Зеленый цвет */
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin: 20px auto;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+
+  /* Эффект при наведении */
+  .custom-button:hover {
+    background-color: #1dd353;
+    transform: translateY(-2px);
+  }
