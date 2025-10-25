@@ -1,13 +1,14 @@
 /* Общие стили */
- body {
-    background-color: #000000;
-    color: #fff;
-    margin: 0;
-    padding-bottom: 80px;
-    font-family: 'Inter', Arial, sans-serif;
-    height: 100vh;
-    overflow: hidden; /* отключаем прокрутку */
-  }
+body {
+  background-color: #000000;
+  color: #fff;
+  margin: 0;
+  padding-bottom: 80px;
+  font-family: 'Inter', Arial, sans-serif;
+  /* Уберите или измените: */
+  /* height: 100vh; */
+  /* overflow: hidden; */
+}
 
 /* Заголовок */
 h2 {
@@ -224,6 +225,21 @@ h2 {
   box-sizing: border-box;
   background-color: #fff;
   color: #000;
+}
+@media (max-width: 768px) {
+  .withdraw-card {
+    width: 90%;
+    max-width: 90%;
+    margin-top: 5vh;
+  }
+}
+
+@media (min-width: 769px) {
+  .withdraw-card {
+    width: 100%;
+    max-width: 400px;
+    margin: 5vh auto 30px auto; /* центрирование */
+  }
 }
 
 
