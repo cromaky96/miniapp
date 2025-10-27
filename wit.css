@@ -5,9 +5,6 @@ body {
   margin: 0;
   padding-bottom: 80px;
   font-family: 'Inter', Arial, sans-serif;
-  /* Уберите или измените: */
-  /* height: 100vh; */
-  /* overflow: hidden; */
 }
 
 /* Заголовок */
@@ -82,22 +79,19 @@ h2 {
   border-radius: 8px;
   margin: 0 2px;
 }
+.menu-item:hover {
+  background: linear-gradient(to top, #333, #555);
+  transform: translateY(-2px);
+}
+.icon {
+  font-size: 4vh;
+  margin-bottom: 0.5vh;
+}
+.label {
+  font-size: 2vh;
+}
 
-  .menu-item:hover {
-    background: linear-gradient(to top, #333, #555);
-    transform: translateY(-2px);
-  }
-
-  .icon {
-    font-size: 4vh;
-    margin-bottom: 0.5vh;
-  }
-
-  .label {
-    font-size: 2vh;
-  }
-
-/* Общий стиль карточки вывода */
+/* Карточка вывода средств */
 .withdraw-card {
   max-width: 400px;
   margin-top: 5vh;
@@ -110,7 +104,6 @@ h2 {
   box-shadow: 0 0 1vh rgba(0,0,0,0.7);
   font-family: 'Inter', Arial, sans-serif;
 }
-
 .card-title {
   text-align: center;
   font-size: 2vh;
@@ -122,21 +115,18 @@ h2 {
 .payment-methods {
   margin-bottom: 2vh;
 }
-
 .payment-label {
   display: block;
   margin-bottom: 1vh;
   font-size: 1.8vh;
   color: #ddd;
 }
-
 .methods-options {
   display: flex;
   flex-wrap: wrap;
   gap: 1vh;
   justify-content: center;
 }
-
 .method-btn {
   padding: 0.8vh 1.5vw;
   background: linear-gradient(to top, #555, #333);
@@ -147,7 +137,6 @@ h2 {
   cursor: pointer;
   transition: background 0.3s, transform 0.2s;
 }
-
 .method-btn:hover,
 .method-btn.active {
   background: linear-gradient(to top, #09cca2, #03b8b8);
@@ -157,19 +146,15 @@ h2 {
 /* Поле для ввода суммы */
 .amount-input {
   margin-bottom: 3vh;
-  padding: 0 1vh; /* добавляем внутренние отступы, чтобы элементы не прилипали к краям */
-  box-sizing: border-box; /* чтобы padding учитывался в ширине */
+  padding: 0 1vh; /* внутренние отступы */
+  box-sizing: border-box; /* учитываем padding в ширине */
 }
-
-/* Метка для суммы */
 .amount-input label {
   display: block;
   margin-bottom: 0.8vh;
   font-size: 1.8vh;
   color: #ddd;
 }
-
-/* Поле для ввода суммы */
 #amount {
   width: 100%;
   padding: 0.8vh 1vw;
@@ -179,15 +164,14 @@ h2 {
   outline: none;
   box-shadow: inset 0 0 0.5vh rgba(0,0,0,0.5);
   box-sizing: border-box; /* учитываем padding и border внутри ширины */
-  background-color: #fff; /* делаем фон белым для читаемости */
-  color: #000; /* текст черный для контраста */
+  background-color: #fff; /* белый фон */
+  color: #000; /* черный текст */
 }
 
 /* Кнопка вывода */
 .withdraw-button-container {
   text-align: center;
 }
-
 .withdraw-btn {
   padding: 1vh 3vw;
   background: linear-gradient(to top, #4CAF50, #388E3C);
@@ -198,22 +182,21 @@ h2 {
   cursor: pointer;
   transition: background 0.3s, transform 0.2s;
 }
-
 .withdraw-btn:hover {
   background: linear-gradient(to top, #66bb6a, #2e7d32);
   transform: translateY(-2px);
 }
+
+/* Реквизиты */
 .requisites-input {
   margin-bottom: 3vh;
 }
-
 .requisites-input label {
   display: block;
   margin-bottom: 0.8vh;
   font-size: 1.8vh;
   color: #ddd;
 }
-
 #requisites {
   width: 100%;
   padding: 0.8vh 1vw;
@@ -226,23 +209,82 @@ h2 {
   background-color: #fff;
   color: #000;
 }
-@media (max-width: 768px) {
+
+/* Таблица заявок */
+#history-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 3vh;
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 1.8vh;
+  color: #fff;
+}
+#history-table thead tr {
+  background-color: #222;
+}
+#history-table th {
+  padding: 10px;
+  border: 1px solid #444;
+  text-align: center;
+  font-weight: 600;
+}
+#history-table tbody tr:nth-child(even) {
+  background-color: #111;
+}
+#history-table tbody tr:hover {
+  background-color: #333;
+}
+#history-table td {
+  padding: 10px;
+  border: 1px solid #444;
+  text-align: center;
+}
+
+/* Стиль для кнопок в таблице */
+#history-table .approve-btn {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.8vh;
+  border: none;
+  transition: background 0.3s, transform 0.2s;
+}
+#history-table .approve-btn:hover {
+  background-color: #66bb6a;
+  transform: translateY(-1px);
+}
+#history-table .cancel-btn {
+  background-color: #f44336;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.8vh;
+  border: none;
+  transition: background 0.3s, transform 0.2s;
+}
+#history-table .cancel-btn:hover {
+  background-color: #ff7961;
+  transform: translateY(-1px);
+}
+
+/* Адаптивность для мобильных */
+@media(max-width: 768px) {
   .withdraw-card {
     width: 90%;
     max-width: 90%;
     margin-top: 5vh;
   }
 }
-
-@media (min-width: 769px) {
+@media(min-width: 769px) {
   .withdraw-card {
     width: 100%;
     max-width: 400px;
-    margin: 5vh auto 30px auto; /* центрирование */
+    margin: 5vh auto 30px auto;
   }
 }
-
-
 
 
 
